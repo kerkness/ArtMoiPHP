@@ -1,0 +1,8 @@
+[28-Sep-2015 18:06:34 UTC] hi im email.php
+[28-Sep-2015 18:07:12 UTC] hi im email.php
+[28-Sep-2015 18:07:38 UTC] hi im email.php
+[28-Sep-2015 18:07:53 UTC] hi im email.php
+[28-Sep-2015 18:08:33 UTC] hi im email.php
+[28-Sep-2015 18:09:28 UTC] hi im email.php
+[30-Sep-2015 19:52:03 UTC] PHP Fatal error:  Call to undefined function alert() in /home/andrewvalko/public_html/views/contact/email.php on line 22
+[30-Sep-2015 19:57:31 UTC] PHP Fatal error:  Class 'Flight' not found in /home/andrewvalko/public_html/config.php on line 70

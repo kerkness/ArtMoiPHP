@@ -1,0 +1,253 @@
+/**TODO: CHANGE BACKGROUND COLOUR TO WHITE AND FONT COLOUR TO BLACK **/
+body {
+    text-align: left;
+    margin: 50px 0;
+    padding: 0px;
+    background: #000;
+    color:#fff;
+    font: 11px/12px "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+a {
+    text-decoration:none;
+}
+
+#content {
+    margin: 0px auto;
+    width: 980px;
+    text-align: left;
+}
+
+#header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#header h1 {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 46px;
+    line-height: 46px;
+    letter-spacing: 18pt;
+    color: #ddd;
+    margin: 0 0 30px 20pt;
+}
+
+#header.home h1 {
+    color: #333;
+    margin-top: 225px;
+}
+
+#navigation {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#header.home #navigation a.cat {
+    color: #999;
+}
+
+#header.home #navigation a.cat:hover {
+    color: #fff;
+}
+
+#navigation a.cat, #navigation span.cat  {
+    text-decoration: none;
+    /*color: #333;*/
+    color:#fff;
+    padding: 10px 19px 10px 22px;
+}
+
+.alternate #navigation a.cat{
+    padding: 10px 31px 10px 33px;
+}
+
+#navigation span.cat {
+    color: #999;
+}
+
+#navigation span.main {
+    color: #fff;
+    background: #333;
+}
+
+#navigation a.cat:hover {
+    background: #666;
+    color: #fff;
+}
+
+#piece {
+    text-align: center;
+}
+
+#piece #image {
+    width: 980px;
+    background: #ddd;
+}
+
+#piece #image, #details {
+    margin-bottom: 25px;
+}
+
+#details {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#details span {
+    padding: 5px;
+}
+
+#details .media, #details .year, #details .dimensions {
+    color: #999;
+    font-size: 9px;
+}
+
+#details .price  {
+    color: #333;
+    font-size: 9px;
+}
+
+.category {
+    margin-bottom: 20px;
+}
+
+.category .description {
+    width: 150px;
+    text-align: right;
+    float: left;
+}
+
+.category .description h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 9px;
+    letter-spacing: 3px;
+    margin: 40px 20px 0 0;
+}
+
+#text {
+    width: 680px;
+    margin: 0px auto;
+}
+
+.sidebar {
+    width: 225px;
+    min-height: 100px;
+    text-align: justify;
+    float: left;
+    font: 15px/28px Georgia, "Times New Roman", Times, serif;
+    color: #ccc;
+    margin: 0px 25px 0px 0px;
+}
+
+.contact {
+    background: url('../images/contact.jpg') no-repeat center top;
+    min-height: 293px;
+}
+
+.sidebar .author {
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.sidebar .credits {
+    text-transform: uppercase;
+    font-size: 9px;
+    line-height: 15px;
+}
+
+.sidebar strong {
+    font-size: 21px;
+    font-weight: normal;
+}
+
+.maincol {
+    font-size: 12px;
+    line-height: 25px;
+    text-align: justify;
+    color: #333;
+    width: 430px;
+    float: left;
+}
+
+.maincol a {
+    text-decoration: none;
+    color: #999;
+}
+
+.maincol a:hover {
+    color: #333;
+}
+
+.maincol label {
+    color: #666;
+    display: block;
+    font-size: 9px;
+    letter-spacing: 3px;
+    float: left;
+    width: 90px;
+    padding: 0px 5px;
+    margin: 0 0 5px 0;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 2pt;
+}
+
+.maincol input, .maincol textarea {
+    margin:  3px 0px 5px 0px ;
+}
+
+.maincol p.msg {
+    font-size: 11px;
+    line-height: 16px;
+    background: #666;
+    color: #fff;
+    padding: 10px 15px;
+}
+
+.maincol br {
+    clear: both;
+}
+
+.maincol strong {
+    font-size: 18px;
+}
+
+.contactform {
+    padding: 25px 0px;
+}
+
+.thumbnails {
+    float: left;
+    text-align: justify;
+    width: 680px;
+}
+
+.thumbnails .thmb, .thumbnails .spacer {
+    float: left;
+    margin-bottom: 5px;
+}
+
+.thumbnails .spacer {
+    height: 90px;
+}
+
+.thumbnails img {
+    padding: 5px;
+    color: #666;
+    max-width:110px;
+    max-height:90px;
+    width:auto;
+    height:auto;
+}
+
+.thumbnails img:hover {
+    background: #666;
+    color: #fff;
+}
