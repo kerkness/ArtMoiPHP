@@ -31,21 +31,21 @@ Flight::route('/bio',function(){
 
 // Contact Page
 Flight::route('/contact',function(){
-    $js = array("scripts/contact.js");
+    $js = array("/~andrewvalko/scripts/contact.js");
     Flight::render('header',array(),'header_content');
     Flight::render('contact/body', array(), 'body_content');
     Flight::render('template', array("js" => $js, "pageName" => "Contact"));
 });
 
 // Display collections & items
-// TODO: The only issue with using /@page is it dosen't get into the 404 error page even though an address is wrong..
 Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
-
+    $js = array("/~andrewvalko/scripts/jquery.arrowNavigation.js");
     $content = Flight::get('content');
 
     $items = array();
     error_log("collection number is ".$collectionNumber);
-    // if collection number exists, it will dump into creation page
+
+    // if collection number exists, load creation page
     if($collectionNumber || $collectionNumber == "0")
     {
         $body = "creation/body";
@@ -56,12 +56,13 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
     }
     else
     {
+        Flight::render('header',array(),'header_content');
         $body = "collection/body";
         foreach ($content as $k => $v)
         {
             if($k == $page) // match with array key name and page name
             {
-                $collections = $v; // store collections to $collections
+                $collections = $v; // add collection list to $collections
                 foreach($collections as $collection)
                 {
                     foreach($collection as $c)
@@ -73,12 +74,9 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
             }
         }
     }
-
     Flight::render($body, array("collections" => $items, "collectionNumber" => $collectionNumber,"pageName" => $page), 'body_content');
-    Flight::render('header',array(),'header_content');
-    Flight::render('template', array("pageName" => $page));
+    Flight::render('template', array("pageName" => $page, "js" => $js));
 });
-
 
 // Home Page
 Flight::route('/', function(){

@@ -13,11 +13,11 @@
     ======== -->
 
     <!-- Custom Stylesheets -->
-    <!-- TODO: Figure out why "css/styles.css" not working on creation page-->
     <link rel="stylesheet" type="text/css" href="/~andrewvalko/css/styles.css">
 
     <!-- jQuery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 
 </head>
 <body>

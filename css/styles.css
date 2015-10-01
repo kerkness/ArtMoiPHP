@@ -5,6 +5,8 @@ body {
     padding: 0px;
     background: #000;
     color:#fff;
+    /*background:#fff;*/
+    /*color:#000;*/
     font: 11px/12px "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif;
     text-align: center;
 }
@@ -89,8 +91,8 @@ a {
     background: #ddd;
 }
 
-#piece #image, #details {
-    margin-bottom: 25px;
+#piece #image, #details{
+margin-bottom: 25px;
 }
 
 #details {

@@ -59,9 +59,6 @@ class Artmoi_Request{
                 error_log("calling api with param $k => $v");
             }
 
-
-
-            // TODO: TRY TO USE FILE_GET_CONTENT
             // CURL Arguments
             $args = array( 'http' =>
                 array(
@@ -70,28 +67,15 @@ class Artmoi_Request{
                 'redirection' => 5,
                 'httpversion' => '1.0',
                 'blocking' => true,
-//                'body' => $this->params(),
                 'headers' => array(),
                 'cookies' => array(),
                 'content' => http_build_query($this->params()),
                 )
             );
 
-
             $queryString = stream_context_create($args);
             $json = file_get_contents($uri, false, $queryString);
             $this->response = new Artmoi_Response($json);
-
-//            $queryString = '&'.http_build_query($this->params());
-//
-//            $curl = curl_init();
-//            curl_setopt($curl, CURLOPT_URL, $uri);
-//            curl_setopt($curl, CURLOPT_POSTFIELDS, ltrim($queryString, '&'));
-//            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-//            $result = curl_exec($curl);
-//            curl_close($curl);
-//            $this->response = new Artmoi_Response($result);
-
         }
         return $this->response();
     }
@@ -102,6 +86,7 @@ class Artmoi_Request{
         {
             $this->response->error('Incomplete request. Success or Error must be called.');
         }
+        error_log("Successfully called");
         return $this->response;
     }
 
