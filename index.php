@@ -1,14 +1,9 @@
 <?php
 
-/**
- * ArtMoi PHP Portfolio Example
- */
+require_once('initflight.php');
 
-require 'flight/flight/Flight.php';
-require 'config.php';
+require_once('config.php');
 
-// path for classes
-Flight::path(HOME_PATH.'/classes');
 
 // Register classes with Flight
 Flight::register('artmoiController', 'ArtMoi_Controller');
@@ -62,13 +57,23 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
             if($k == $page) // match key name and page name
             {
                 $collections = $v; // add collection list to $collections
+
+
+//                Moi_Debug::vars($collections);
+
+
                 foreach($collections as $collection)
                 {
-                    foreach($collection as $c)
-                    {
-                        // add to item array. $items[ collection name ] = collection data
-                        $items[$c['name']] = Flight::artmoiController()->collection($c['id']);
-                    }
+
+//                    Moi_Debug::vars($collection);
+
+                    $items[$collection['id']] = Flight::artmoiController()->collection($collection['id']);
+
+//                    foreach($collection as $c)
+//                    {
+//                        // add to item array. $items[ collection name ] = collection data
+////                        $items[$c['name']] = Flight::artmoiController()->collection($c['id']);
+//                    }
                 }
             }
         }

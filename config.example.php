@@ -56,8 +56,11 @@ $content = array(
             ),
         ),
     ),
+);
 
-
+$pages = array(
+    'page1' => 'Page One',
+    'page2' => 'Page Two',
 );
 
 /**
@@ -66,3 +69,4 @@ $content = array(
 
 // Save content
 Flight::set('content', $content);
+Flight::set('pages', $pages);
