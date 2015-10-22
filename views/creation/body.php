@@ -14,9 +14,9 @@
             <?endif?>
         </div>
         <div id="navigation" class="col-md-12 col-xs-12">
-            <a class="cat" href="/<?=$pageName?>/<?=$collectionNumber?>?p=<?if($page == 1 || $page == 0) : ?><?=$collections->itemCount?><? else : ?><?=$page-1?><?endif?>" id="arr-nav-left-link">&lt;</a>
+            <a class="cat" href="/<?=$pageName?>/item?p=<?if($page == 1 || $page == 0) : ?><?=$collections->itemCount?><? else : ?><?=$page-1?><?endif?>" id="arr-nav-left-link">&lt;</a>
             <a class="cat" href="/<?=$pageName?>">&equiv;&equiv;&equiv;&equiv;</a>
-            <a class="cat" href="/<?=$pageName?>/<?=$collectionNumber?>?p=<?if($page == $collections->itemCount) : ?>1<? else : ?><?=$page+1?><?endif?>" id="arr-nav-right-link">&gt;</a>
+            <a class="cat" href="/<?=$pageName?>/item?p=<?if($page == $collections->itemCount) : ?>1<? else : ?><?=$page+1?><?endif?>" id="arr-nav-right-link">&gt;</a>
         </div>
     </div>
 <?else : ?>

@@ -40,13 +40,14 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
     $items = array();
 
     // if collection number exists, load creation page
-    if($collectionNumber || $collectionNumber == "0")
+    if($collectionNumber || $collectionNumber == "item")
     {
         $body = "creation/body";
         // Grab one item data from collection
         $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
         Flight::view()->set("page",$p);
-        $items = Flight::artmoiController()->collection($content[$page]['collections'][$collectionNumber]['id'], $p, 1);
+
+        $items = Flight::artmoiController()->collection($content[$page]['collections']['id'], $p, 1);
     }
     else
     {

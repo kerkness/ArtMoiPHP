@@ -74,6 +74,7 @@ class ArtMoi_Request{
             );
 
             $queryString = stream_context_create($args);
+
             $json = file_get_contents($uri, false, $queryString);
             $this->response = new ArtMoi_Response($json);
         }
