@@ -7,6 +7,7 @@
         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
         $phone = $_POST["phone"];
         $message = trim($_POST["message"]);
+        $recipient = $_POST["recipient"];
 
         // Check that data was sent to the mailer.
         if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -16,8 +17,6 @@
             exit;
         }
 
-        // Set the recipient email address.
-        $recipient = "lj@artmoi.com"; // TODO: CHANGE TO ANDREWVALKO'S EMAIL ADDRESS !
         // Set the email subject.
         $subject = "New contact from $name";
 

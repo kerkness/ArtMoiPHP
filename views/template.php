@@ -12,8 +12,14 @@
     STYLESHEETS
     ======== -->
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
     <!-- Custom Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="/~andrewvalko/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
     <!-- jQuery -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -21,7 +27,8 @@
 
 </head>
 <body>
-    <div id="content">
+
+    <div class="container">
         <?=$header_content?>
         <?=$body_content?>
         <br clear="all" />
@@ -31,6 +38,8 @@
     <!-- =====
      SCRIPTS
      ===== -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <? if( isset($js) and is_array($js) ) : ?>
         <? foreach($js as $src) : ?>

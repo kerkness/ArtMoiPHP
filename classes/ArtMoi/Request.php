@@ -4,9 +4,9 @@
  *
  * Request object
  */
-class Artmoi_Request{
+class ArtMoi_Request{
 
-    public $apikey = API_KEY;
+    public $apikey = ARTMOI_API_KEY;
     public $apiURI = MOIAPI_BASEURI;
     public $params = array();
 
@@ -14,8 +14,8 @@ class Artmoi_Request{
 
     public function __construct()
     {
-        $this->apiKey = API_KEY;
-        $this->response = new Artmoi_Response();
+        $this->apiKey = ARTMOI_API_KEY;
+        $this->response = new ArtMoi_Response();
     }
 
 
@@ -75,8 +75,9 @@ class Artmoi_Request{
 
             $queryString = stream_context_create($args);
             $json = file_get_contents($uri, false, $queryString);
-            $this->response = new Artmoi_Response($json);
+            $this->response = new ArtMoi_Response($json);
         }
+
         return $this->response();
     }
 
@@ -86,7 +87,6 @@ class Artmoi_Request{
         {
             $this->response->error('Incomplete request. Success or Error must be called.');
         }
-        error_log("Successfully called");
         return $this->response;
     }
 

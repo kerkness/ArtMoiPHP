@@ -1,12 +1,9 @@
-/**TODO: CHANGE BACKGROUND COLOUR TO WHITE AND FONT COLOUR TO BLACK **/
 body {
     text-align: left;
     margin: 50px 0;
     padding: 0px;
-    background: #000;
-    color:#fff;
-    /*background:#fff;*/
-    /*color:#000;*/
+    background:#fff;
+    color:#000;
     font: 11px/12px "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif;
     text-align: center;
 }
@@ -14,70 +11,69 @@ a {
     text-decoration:none;
 }
 
-#content {
-    margin: 0px auto;
-    width: 980px;
-    text-align: left;
-}
-
-#header {
+.header {
     text-align: center;
     margin-bottom: 50px;
 }
 
-#header h1 {
+.header-title {
     text-transform: uppercase;
     font-weight: normal;
-    font-size: 46px;
+    font-size: 4em;
     line-height: 46px;
     letter-spacing: 18pt;
     color: #ddd;
     margin: 0 0 30px 20pt;
 }
 
-#header.home h1 {
+.header.home .header-title {
     color: #333;
-    margin-top: 225px;
+    margin:15% 0 30px 12pt;
+    padding-left:inherit;
 }
-
-#navigation {
+.navbar .navbar-nav{
+    display:inline-block;
+    float:none;
+    vertical-align:top;
+}
+.navbar-collapse{
     text-transform: uppercase;
     font-weight: bold;
     font-size: 9px;
     letter-spacing: 3px;
     margin: 0px;
     padding: 0px;
+    text-align:center;
 }
-
-#header.home #navigation a.cat {
+.navbar-default{
+    background:none;
+    border:none;
+    box-shadow:none;
+}
+.header.home .nav li a.cat {
     color: #999;
 }
 
-#header.home #navigation a.cat:hover {
+.header.home .nav li a.cat:hover {
     color: #fff;
 }
 
-#navigation a.cat, #navigation span.cat  {
+.nav li a.cat, .nav li span.cat  {
     text-decoration: none;
-    /*color: #333;*/
-    color:#fff;
+    color: #333;
     padding: 10px 19px 10px 22px;
 }
 
-.alternate #navigation a.cat{
-    padding: 10px 31px 10px 33px;
-}
-
-#navigation span.cat {
+.nav li span.cat {
     color: #999;
 }
 
-#navigation span.main {
+.nav li span.main {
     color: #fff;
     background: #333;
 }
 
-#navigation a.cat:hover {
+.nav li a.cat:hover {
     background: #666;
     color: #fff;
 }
@@ -86,24 +82,26 @@ a {
     text-align: center;
 }
 
+
 #piece #image {
-    width: 980px;
-    background: #ddd;
+    float:none;
+    margin:0 auto;
 }
 
 #piece #image, #details{
 margin-bottom: 25px;
 }
 
+
 #details {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-#details span {
+#details .title, #details .year, #details .media, #details .year, #details .dimensions,  #details .price{
     padding: 5px;
+    float:none;
 }
-
 #details .media, #details .year, #details .dimensions {
     color: #999;
     font-size: 9px;
@@ -114,15 +112,14 @@ margin-bottom: 25px;
     font-size: 9px;
 }
 
+#piece #navigation a{
+     padding-right:5px;
+}
+
 .category {
     margin-bottom: 20px;
 }
 
-.category .description {
-    width: 150px;
-    text-align: right;
-    float: left;
-}
 
 .category .description h2 {
     text-transform: uppercase;
@@ -132,25 +129,17 @@ margin-bottom: 25px;
     margin: 40px 20px 0 0;
 }
 
-#text {
-    width: 680px;
-    margin: 0px auto;
+
+.contact-container div{
+    text-align:left;
 }
 
 .sidebar {
-    width: 225px;
-    min-height: 100px;
     text-align: justify;
-    float: left;
     font: 15px/28px Georgia, "Times New Roman", Times, serif;
     color: #ccc;
-    margin: 0px 25px 0px 0px;
 }
 
-.contact {
-    background: url('../images/contact.jpg') no-repeat center top;
-    min-height: 293px;
-}
 
 .sidebar .author {
     text-transform: uppercase;
@@ -169,38 +158,50 @@ margin-bottom: 25px;
     font-weight: normal;
 }
 
-.maincol {
+.emailto {
     font-size: 12px;
     line-height: 25px;
     text-align: justify;
     color: #333;
-    width: 430px;
-    float: left;
 }
 
-.maincol a {
+.emailto a {
     text-decoration: none;
     color: #999;
 }
 
-.maincol a:hover {
+.emailto a:hover {
     color: #333;
 }
 
-.maincol label {
+
+label.form-group, #form-messages{
     color: #666;
     display: block;
     font-size: 9px;
-    letter-spacing: 3px;
     float: left;
-    width: 90px;
     padding: 0px 5px;
     margin: 0 0 5px 0;
-    text-align: right;
     text-transform: uppercase;
     letter-spacing: 2pt;
 }
+#contact_form input{
+    color:#666;
+    font-size:9px;
+    letter-spacing:2pt;
+    padding-left:10px;
+}
+#contact_form textarea{
+    font-size:10px;
+    letter-spacing:2pt;
+}
 
+.maincol{
+    font-size:12px;
+    line-height:25px;
+    text-align:justify;
+    color:#333;
+}
 .maincol input, .maincol textarea {
     margin:  3px 0px 5px 0px ;
 }
@@ -225,31 +226,30 @@ margin-bottom: 25px;
     padding: 25px 0px;
 }
 
-.thumbnails {
-    float: left;
-    text-align: justify;
-    width: 680px;
+.thumb {
+    margin-bottom: 30px;
+}
+.thumbnail img{
+    min-height:120px;
+    height:120px;
 }
 
-.thumbnails .thmb, .thumbnails .spacer {
-    float: left;
-    margin-bottom: 5px;
-}
 
-.thumbnails .spacer {
-    height: 90px;
-}
+@media (max-width:991px) {
+    .header .header-title{
+        font-size:2.5em;
+        margin:0 0 0 0;
+    }
+    .header.home .header-title{
+        font-size:2.5em;
+        margin:15% 0 0 0;
+    }
 
-.thumbnails img {
-    padding: 5px;
-    color: #666;
-    max-width:110px;
-    max-height:90px;
-    width:auto;
-    height:auto;
-}
-
-.thumbnails img:hover {
-    background: #666;
-    color: #fff;
+    #details .title, #details .year, #details .media, #details .year, #details .dimensions, #details .price {
+        float:left;
+    }
+    .thumbnail img{
+        min-height:inherit;
+        height:inherit;
+    }
 }

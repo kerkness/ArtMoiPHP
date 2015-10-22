@@ -6,6 +6,9 @@
  *
  */
 
+// base site url
+define('BASE_URL', "http://example.com");
+
 // set the uri for api
 define('MOIAPI_BASEURI',"http://api.artmoi.me/1.0");
 
@@ -18,6 +21,9 @@ define('API_KEY',"<INSERT YOUR API KEY HERE>");
 
 // Site Name
 define('USER_NAME',"Artist Name");
+
+// User Email Address
+define('USER_EMAIL',"Artist Email address");
 
 // Site Title
 define('DEFAULT_TITLE',"SITE TITLE");
@@ -38,6 +44,7 @@ $content = array(
                 'id' => '<Enter the collection id>',
                 'name' => 'Collection Title One',
             ),
+        ),
     ),
 
     // http://www.yourdomain.com/page2

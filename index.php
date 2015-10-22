@@ -11,9 +11,9 @@ require 'config.php';
 Flight::path(HOME_PATH.'/classes');
 
 // Register classes with Flight
-Flight::register('artmoiController', 'Artmoi_Controller');
-Flight::register('artmoiRequest', 'Artmoi_Request');
-Flight::register('artmoiResponse','Artmoi_Response');
+Flight::register('artmoiController', 'ArtMoi_Controller');
+Flight::register('artmoiRequest', 'ArtMoi_Request');
+Flight::register('artmoiResponse','ArtMoi_Response');
 
 // 404 Error page
 Flight::map('notFound',function(){
@@ -31,7 +31,7 @@ Flight::route('/bio',function(){
 
 // Contact Page
 Flight::route('/contact',function(){
-    $js = array("/~andrewvalko/scripts/contact.js");
+    $js = array("/scripts/contact.js");
     Flight::render('header',array(),'header_content');
     Flight::render('contact/body', array(), 'body_content');
     Flight::render('template', array("js" => $js, "pageName" => "Contact"));
@@ -39,11 +39,10 @@ Flight::route('/contact',function(){
 
 // Display collections & items
 Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
-    $js = array("/~andrewvalko/scripts/jquery.arrowNavigation.js");
+    $js = array("/scripts/jquery.arrowNavigation.js");
     $content = Flight::get('content');
 
     $items = array();
-    error_log("collection number is ".$collectionNumber);
 
     // if collection number exists, load creation page
     if($collectionNumber || $collectionNumber == "0")
@@ -60,7 +59,7 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
         $body = "collection/body";
         foreach ($content as $k => $v)
         {
-            if($k == $page) // match with array key name and page name
+            if($k == $page) // match key name and page name
             {
                 $collections = $v; // add collection list to $collections
                 foreach($collections as $collection)

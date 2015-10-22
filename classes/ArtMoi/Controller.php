@@ -1,12 +1,11 @@
 <?php
 /**
- * Class Artmoi_Controller
+ * Class ArtMoi_Controller
  */
 
 
-class Artmoi_Controller
+class ArtMoi_Controller
 {
-
     public function collection($publicId, $page = 0, $limit = 0)
     {
         $request = Flight::artmoiRequest();
@@ -18,8 +17,15 @@ class Artmoi_Controller
         $action = $publicId;
         $response = $request->call($controller, $action);
 
-        return $response->results();
+        return $response->collection();
     }
+
+
+
+
+
+
+
 
 
 }
