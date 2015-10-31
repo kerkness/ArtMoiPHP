@@ -131,25 +131,24 @@ class ArtMoi_Response
     {
         foreach($items as $i => $item)
         {
-            $items[$i] = new ArtMoi_Model_Item($item);
-
-            if( $item->images )
-            {
-                $items[$i]->images = $this->buildImages($item->images);
-            }
+            $items[$i] = ArtMoi_Model_Item::buildFromApi($item);
+//            if( $item->images )
+//            {
+//                $items[$i]->images = $this->buildImages($item->images);
+//            }
         }
         return $items;
     }
 
-    public function buildImages($images)
-    {
-        foreach($images as $i => $img)
-        {
-            $images[$i] = new ArtMoi_Model_Image($img);
-        }
-
-        return $images;
-    }
+//    public function buildImages($images)
+//    {
+//        foreach($images as $i => $img)
+//        {
+//            $images[$i] = new ArtMoi_Model_Image($img);
+//        }
+//
+//        return $images;
+//    }
 
     /**
      * @param $collections

@@ -11,6 +11,21 @@ a {
     text-decoration:none;
 }
 
+.center{
+    float:none;
+    margin:0 auto;
+}
+.margin-top-sm{
+    margin-top:10px;
+}
+.margin-top-md{
+    margin-top:30px;
+}
+.margin-top-lg{
+    margin-top:50px;
+}
+
+
 .header {
     text-align: center;
     margin-bottom: 50px;
@@ -133,7 +148,39 @@ margin-bottom: 25px;
 .contact-container div{
     text-align:left;
 }
+.contact-social-icons ul{
+    padding-left:inherit;
+}
+.contact-social-icons ul li{
+    list-style:none;
+    display:inline-block;
+    padding:0px 10px 10px 10px;
+}
+.contact-social-icons ul li img{
+    width:25px;
+    height:25px;
+    border-radius:15px;
+    margin-bottom:3px;
+}
+.social-icon{
+    background-color:#fff;
+    color:#000;
+    display:block;
+    font-size:1.3em;
+    width:26px;
+    height:26px;
+    line-height:25px;
+    text-align:center;
+    border:1px solid #333;
+    border-radius:15px;
+}
 
+.contact-social-icons ul li a:hover{text-decoration:none;}
+
+.contact-social-icons ul li a:hover .social-icon, .contact-social-icons ul li a:hover img{
+    font-size:1.3em;
+    background-color:#999;
+}
 .sidebar {
     text-align: justify;
     font: 15px/28px Georgia, "Times New Roman", Times, serif;
@@ -196,6 +243,7 @@ label.form-group, #form-messages{
     letter-spacing:2pt;
 }
 
+
 .maincol{
     font-size:12px;
     line-height:25px;
@@ -226,12 +274,23 @@ label.form-group, #form-messages{
     padding: 25px 0px;
 }
 
+.footer .credit a{
+    color:#03CCD3;
+    text-decoration:none;
+}
+
 .thumb {
     margin-bottom: 30px;
 }
 .thumbnail img{
     min-height:120px;
     height:120px;
+}
+
+#imageWrap{
+    min-width:20px;
+    min-height:20px;
+    background:url('/portfolio/ArtMoiPHP/images/loading.gif') 20px 20px;
 }
 
 

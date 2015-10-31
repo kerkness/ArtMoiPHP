@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -34,6 +35,13 @@
         <br clear="all" />
     </div>
 
+    <? $creator = Flight::get('creator'); ?>
+    <div class="footer container margin-top-md">
+<!--        <pre>--><?//print_r($creator)?><!--</pre>-->
+        <?if($creator->firstName && $creator->lastName) : ?><p class="text-muted copyright">© <?=$creator->firstName?> <?=$creator->lastName?></p><?endif?>
+        <p class="text-muted credit"><a href="http://www.artmoi.com">Proudly powered by ArtMoi</a></p>
+
+    </div>
 
     <!-- =====
      SCRIPTS

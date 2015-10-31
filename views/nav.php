@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a class="cat" href="/">Home</a></a></li>
                 <? foreach( Flight::get('pages') as $page ) : ?>
-                    <li><a class="cat" href="/<?= $page['id'] ?>"><?= $page['name'] ?></a></li>
+                    <li><a class="cat" href="/collection/<?= $page['id'] ?>"><?= $page['name'] ?></a></li>
                 <? endforeach ?>
                 <li><a class="cat" href="/contact">Contact</a></li>
             </ul>

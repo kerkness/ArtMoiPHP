@@ -19,6 +19,10 @@ define("HOME_PATH", '/home/username/www');
 // Login to artmoi.me to create an integrations key
 define('API_KEY',"<INSERT YOUR API KEY HERE>");
 
+// Enter your Mandril API Key if you have one
+// This is optional
+//define("MANDRILL_API_KEY", "<INSERT YOUR MANDRIL API KEY HERE>");
+
 // Site Name
 define('USER_NAME',"Artist Name");
 

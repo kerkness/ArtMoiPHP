@@ -9,6 +9,7 @@ require_once('config.php');
 Flight::register('artmoiController', 'ArtMoi_Controller');
 Flight::register('artmoiRequest', 'ArtMoi_Request');
 Flight::register('artmoiResponse','ArtMoi_Response');
+Flight::register('artmoiContact', 'ArtMoi_Controller_Contact');
 
 // 404 Error page
 Flight::map('notFound',function(){
@@ -27,13 +28,25 @@ Flight::route('/bio',function(){
 // Contact Page
 Flight::route('/contact',function(){
     $js = array("/scripts/contact.js");
+
+    $contactList = Flight::get('contact');
+    $contact = Flight::artmoiController()->contactIcons($contactList);
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(MANDRILL_API_KEY != null){
+            Flight::artmoiContact()->action_mandrill();
+        }
+        else{
+            Flight::artmoiContact()->action_sendMail();
+        }
+    }
     Flight::render('header',array(),'header_content');
-    Flight::render('contact/body', array(), 'body_content');
+    Flight::render('contact/body', array("contact" => $contact), 'body_content');
     Flight::render('template', array("js" => $js, "pageName" => "Contact"));
 });
 
 // Display collections & items
-Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
+Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collectionNumber){
     $js = array("/scripts/jquery.arrowNavigation.js");
     $content = Flight::get('content');
 
@@ -42,12 +55,13 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
     // if collection number exists, load creation page
     if($collectionNumber || $collectionNumber == "item")
     {
+        Flight::render('header',array(),'header_content');
         $body = "creation/body";
         // Grab one item data from collection
         $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
         Flight::view()->set("page",$p);
-
-        $items = Flight::artmoiController()->collection($content[$page]['collections']['id'], $p, 1);
+        $items = Flight::artmoiController()->collection($page, $p, 1);
+        $pageName = $items->items[0]->title;
     }
     else
     {
@@ -57,30 +71,13 @@ Flight::route('/@page(/@collectionNumber)',function($page,$collectionNumber){
         {
             if($k == $page) // match key name and page name
             {
-                $collections = $v; // add collection list to $collections
-
-
-//                Moi_Debug::vars($collections);
-
-
-                foreach($collections as $collection)
-                {
-
-//                    Moi_Debug::vars($collection);
-
-                    $items[$collection['id']] = Flight::artmoiController()->collection($collection['id']);
-
-//                    foreach($collection as $c)
-//                    {
-//                        // add to item array. $items[ collection name ] = collection data
-////                        $items[$c['name']] = Flight::artmoiController()->collection($c['id']);
-//                    }
-                }
+                $pageName = $v['collections']['name'];
+                $items = Flight::artmoiController()->collection($k);
             }
         }
     }
-    Flight::render($body, array("collections" => $items, "collectionNumber" => $collectionNumber,"pageName" => $page), 'body_content');
-    Flight::render('template', array("pageName" => $page, "js" => $js));
+    Flight::render($body, array("collection" => $items, "collectionNumber" => $collectionNumber,"pageName" => $page), 'body_content');
+    Flight::render('template', array("pageName" => $pageName, "js" => $js));
 });
 
 // Home Page

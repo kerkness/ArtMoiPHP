@@ -1,11 +1,12 @@
-<div class="contact-container col-md-12 col-md-offset-2">
-    <div class="col-md-3 col-xs-12 center-block"><img src="/images/contact.jpg" class="img-responsive"></div>
-    <div class="col-md-5 col-xs-12 center-block">
-       <span class="emailto"> Please send an email to <script type="text/javascript"> document.write("<n uers=znvygb:naqerj@naqerjinyxb.pbz>naqerj@naqerjinyxb.pbz</n>".replace(/[a-zA-Z]/g, function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);})); </script> or fill in the contact form below.		<br clear="all" /></span>
+<? $user = Flight::get('user'); ?>
+
+<div class="contact-container col-md-12 col-sm-12">
+    <div class="col-md-6 col-xs-12 center">
         <div class="contactform">
 
-            <form action="/views/contact/email.php" id="contact_form" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="recipient" value="<?=USER_EMAIL?>">
+<!--            <form action="/ArtMoiPHP/views/contact/email.php" id="contact_form" method="POST" enctype="multipart/form-data">-->
+            <form id="contact_form" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="recipient" value="<?=$user->email?>">
                 <label class="form-group" for="name">Name:</label>
                 <input type="text" placeholder="name" class="form-control input" name="name" id="name" size="30" value="" /><br />
 
@@ -22,9 +23,29 @@
 
                 <div style='clear:both'></div>
                 <br/>
-                <div id="form-messages"></div>
-
+               <div id="form-messages"></div>
             </form>
         </div>
     </div>
+    <div class="margin-top-lg col-md-8 col-sm-12 center">
+            <div class="contact-social-icons col-md-12 col-sm-12">
+                <ul class="text-center">
+
+                    <?if($contact) : ?>
+                        <?foreach($contact as $c) : ?>
+                            <li>
+                            <? if($c['name'] == "blogger") : ?>
+                                <a href="<?=$c['link']?>" class="blogger-atag"><img src="<?=$c['icon']?>" class="social-icon-image" /></a>
+                            <? else : ?>
+                                <a href="<?=$c['link']?>"><i class="<?=$c['icon']?> social-icon"></i></a>
+                            <?endif?>
+                            </li>
+                        <?endforeach?>
+                    <?endif?>
+                </ul>
+        </div>
+    </div>
 </div>
+
+
+

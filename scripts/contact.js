@@ -1,7 +1,5 @@
 $(function(){
     var form = $("#contact_form");
-    var formMessages = $("#form-messages");
-
     $(form).submit(function(event){
         event.preventDefault();
         var formData = $(form).serialize();
@@ -13,11 +11,9 @@ $(function(){
             data:formData
         })
             .done(function(response){
-                console.log(response);
                 // Make sure that the formMessages div has the 'success' class.
                 $(formMessages).removeClass('error');
                 $(formMessages).addClass('success');
-
                 // Set the message text.
                 $(formMessages).text(response);
 
