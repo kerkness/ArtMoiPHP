@@ -19,9 +19,6 @@
         <?endif?>
         </div>
     </div>
-
-<?//else : ?>
-<!--    <h1 style="text-align:center"> Sorry ! Page not Found </h1>-->
 <? endif ?>
 
 

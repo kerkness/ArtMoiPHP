@@ -65,11 +65,37 @@ a {
     border:none;
     box-shadow:none;
 }
-.header.home .nav li a.cat {
+
+.nav .dropdown button, .nav .dropdown ul.dropdown-menu li a{
+    font:11px/12px "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Helvetica, Arial, sans-serif;
+    background:transparent;
+    text-decoration:none;
+    color:#333;
+    line-height:20px;
+    position:relative;
+    display:block;
+    text-shadow:0 1px 0 rgba(255,255,255,.25);
+    padding: 10px 19px 10px 22px;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:9px;
+    letter-spacing:3px;
+    border-radius:inherit;
+}
+
+.nav .dropdown ul.dropdown-menu{
+    border-radius:inherit;
+}
+.nav .dropdown button:hover,  .nav .dropdown ul.dropdown-menu li a:hover{
+    background:#666;
+    color:#fff;
+}
+
+.header.home .nav li a.cat, .header.home .nav .dropdown button, .header.home  .nav .dropdown ul.dropdown-menu li a {
     color: #999;
 }
 
-.header.home .nav li a.cat:hover {
+.header.home .nav li a.cat:hover, .header.home .nav .dropdown button:hover , .header.home  .nav .dropdown ul.dropdown-menu li a:hover {
     color: #fff;
 }
 

@@ -18,12 +18,6 @@ Flight::map('notFound',function(){
     Flight::render('template', array());
 });
 
-// Biography Page
-Flight::route('/bio',function(){
-    Flight::render('header',array(),'header_content');
-    Flight::render('bio/body', array(), 'body_content');
-    Flight::render('template', array("pageName" => "Biography"));
-});
 
 // Contact Page
 Flight::route('/contact',function(){
@@ -53,30 +47,42 @@ Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collecti
     $items = array();
 
     // if collection number exists, load creation page
+
     if($collectionNumber || $collectionNumber == "item")
     {
-        Flight::render('header',array(),'header_content');
         $body = "creation/body";
         // Grab one item data from collection
         $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
+        $t = (Flight::request()->query->t) ? Flight::request()->query->t : "";
         Flight::view()->set("page",$p);
-        $items = Flight::artmoiController()->collection($page, $p, 1);
-        $pageName = $items->items[0]->title;
+        if($page == "creations"){
+            $items = Flight::artmoiController()->creations($p, 1);
+            $pageName = "creations";
+        }else{
+            $items = Flight::artmoiController()->collection($page, $p, 1);
+            $pageName = $items->items[0]->title;
+        }
+
     }
-    else
-    {
-        Flight::render('header',array(),'header_content');
-        $body = "collection/body";
-        foreach ($content as $k => $v)
-        {
-            if($k == $page) // match key name and page name
+    else{
+        if($page == "creations"){
+            $body = "creations/body";
+            $items = Flight::artmoiController()->creations();
+        }
+        else {
+            $body = "collection/body";
+            foreach ($content as $k => $v)
             {
-                $pageName = $v['collections']['name'];
-                $items = Flight::artmoiController()->collection($k);
+                if($k == $page) // match key name and page name
+                {
+                    $pageName = $v['collections']['name'];
+                    $items = Flight::artmoiController()->collection($k);
+                }
             }
         }
     }
-    Flight::render($body, array("collection" => $items, "collectionNumber" => $collectionNumber,"pageName" => $page), 'body_content');
+    Flight::render('header',array(),'header_content');
+    Flight::render($body, array("collection" => $items, "collectionNumber" => $collectionNumber,"pageName" => $page, "total" => $t), 'body_content');
     Flight::render('template', array("pageName" => $pageName, "js" => $js));
 });
 

@@ -118,7 +118,13 @@ class ArtMoi_Response
      */
     public function items()
     {
-        return $this->buildItems($this->results->items);
+        if($this->results->items){
+            return $this->buildItems($this->results->items);
+        }
+        else{
+            return $this->buildItems($this->results);
+        }
+
     }
 
 

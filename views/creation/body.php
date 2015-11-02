@@ -1,6 +1,6 @@
 <? if($collection) : ?>
     <div class="creation-container">
-    <?foreach($collection->items as $item) :?>
+    <? foreach( ($collection->items) ? $collection->items : $collection  as $item) : ?>
         <div class="col-md-12 col-sm-12" id="imageWrap">
             <img src="<?=$item->imageUrl()?>" class="col-md-8 img-responsive center" id="mainImage" />
         </div>
@@ -27,11 +27,11 @@
     <?if(count($item->images) > 1) : ?>
         <? Flight::render('creation/thumbnail',array('images' => $item->images));?>
     <?endif?>
-
+        <? $itemCount = ($collection->itemCount) ? $collection->itemCount : $total; ?>
         <div id="navigation"class="col-md-12 margin-top-sm">
-                        <a class="cat" href="/collection/<?=$pageName?>/item?p=<?if($page == 1 || $page == 0) : ?><?=$collection->itemCount?><? else : ?><?=$page-1?><?endif?>" id="arr-nav-left-link">&lt;</a>
+                        <a class="cat" href="/collection/<?=$pageName?>/item?p=<?if($page == 1 || $page == 0) : ?><?=$itemCount?><? else : ?><?=$page-1?><?endif?><?= ($total) ? "&t=$total" : "" ?>" id="arr-nav-left-link">&lt;</a>
                         <a class="cat" href="/collection/<?=$pageName?>">&equiv;&equiv;&equiv;&equiv;</a>
-                        <a class="cat" href="/collection/<?=$pageName?>/item?p=<?if($page == $collection->itemCount) : ?>1<? else : ?><?=$page+1?><?endif?>" id="arr-nav-right-link">&gt;</a>
+                        <a class="cat" href="/collection/<?=$pageName?>/item?p=<?if($page == $itemCount) : ?>1<? else : ?><?=$page+1?><?endif?><?= ($total) ? "&t=$total" : "" ?>" id="arr-nav-right-link">&gt;</a>
         </div>
 
 <?endforeach?>

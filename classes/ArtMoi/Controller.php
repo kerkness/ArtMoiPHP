@@ -20,6 +20,19 @@ class ArtMoi_Controller
         return $response->collection();
     }
 
+    public function creations($page = 0, $limit = 30)
+    {
+        $request = Flight::artmoiRequest();
+        $request->params('p',$page);
+        $request->params('limit',$limit);
+
+        $controller = "creation";
+        $action = "user";
+        $response = $request->call($controller,$action);
+
+        return $response->items();
+    }
+
     public function contactIcons ($contact)
     {
         if($contact){
