@@ -1,7 +1,7 @@
 <?if($collection) : ?>
 <? $count = 0;?>
 <div class="col-md-10 col-md-offset-1">
-    <div class="col-md-1 col-sm-12 center category">
+    <div class="col-md-1 col-sm-12 category">
         <div class="description">
             <h2>Creations</h2>
         </div>

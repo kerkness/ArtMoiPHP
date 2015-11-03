@@ -12,7 +12,6 @@
 
         <div class="header-title"><?= DEFAULT_TITLE ?></div>
 
-
         <div class="collapse navbar-collapse" id="bs-navigationbar">
             <ul class="nav navbar-nav">
                 <li><a class="cat" href="/">Home</a></a></li>
