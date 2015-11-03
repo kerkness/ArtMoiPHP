@@ -23,7 +23,7 @@
 
                 <div style='clear:both'></div>
                 <br/>
-               <div id="form-messages"></div>
+               <div id="form-messages" role="alert"></div>
             </form>
         </div>
     </div>

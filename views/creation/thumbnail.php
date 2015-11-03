@@ -1,7 +1,7 @@
 
 
 <?if($images) : ?>
-    <div class="col-md-8 col-sm-12 center">
+    <div class="col-md-8 col-sm-12 center ">
         <? foreach($images as $image) : ?>
             <div class="col-md-2 col-xs-4">
                 <a href="<?=$image->imageFile?>" class="thumbnailImage"><img src="<?=$image->imageFileThumbnail?>" class="img-responsive"/> </a>

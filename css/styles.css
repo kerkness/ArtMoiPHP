@@ -1,6 +1,6 @@
 body {
     text-align: left;
-    margin: 50px 0;
+    margin: 25px 0;
     padding: 0px;
     background:#fff;
     color:#000;
@@ -29,16 +29,20 @@ a {
 .header {
     text-align: center;
     margin-bottom: 50px;
+    word-wrap:break-word;
 }
 
 .header-title {
+    text-align:center;
     text-transform: uppercase;
     font-weight: normal;
-    font-size: 4em;
+    font-size: 3.5em;
     line-height: 46px;
     letter-spacing: 18pt;
     color: #ddd;
-    margin: 0 0 30px 20pt;
+    padding:0;
+    margin: 0 0 30px 0;
+
 }
 
 .header.home .header-title {
@@ -83,6 +87,9 @@ a {
     border-radius:inherit;
 }
 
+.nav .dropdown ul.dropdown-menu li a{
+    text-align:center;
+}
 .nav .dropdown ul.dropdown-menu{
     border-radius:inherit;
 }
@@ -253,7 +260,6 @@ label.form-group, #form-messages{
     display: block;
     font-size: 9px;
     float: left;
-    padding: 0px 5px;
     margin: 0 0 5px 0;
     text-transform: uppercase;
     letter-spacing: 2pt;
@@ -327,7 +333,7 @@ label.form-group, #form-messages{
     }
     .header.home .header-title{
         font-size:2.5em;
-        margin:15% 0 0 0;
+        margin:0 0 0 0;
     }
 
     #details .title, #details .year, #details .media, #details .year, #details .dimensions, #details .price {
