@@ -77,6 +77,7 @@ class ArtMoi_Request{
 
             $json = file_get_contents($uri, false, $queryString);
             $this->response = new ArtMoi_Response($json);
+
         }
 
         return $this->response();
@@ -90,5 +91,6 @@ class ArtMoi_Request{
         }
         return $this->response;
     }
+
 
 }

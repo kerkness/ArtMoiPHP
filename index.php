@@ -42,8 +42,7 @@ Flight::route('/contact',function(){
 // Display collections & items
 Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collectionNumber){
     $js = array("/scripts/jquery.arrowNavigation.js");
-    $content = Flight::get('content');
-
+    $limit = Flight::get('creationLimit');
     $items = array();
 
     // if collection number exists, load creation page
@@ -54,7 +53,17 @@ Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collecti
         // Grab one item data from collection
         $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
         $t = (Flight::request()->query->t) ? Flight::request()->query->t : "";
+
+        // Redirect to the first item page if $page or $total is greater than creation limit
+        if($p > $limit){
+            $p = 0;
+        }
+        if($t > $limit){
+            $t = $limit;
+        }
+
         Flight::view()->set("page",$p);
+
         if($page == "creations"){
             $items = Flight::artmoiController()->creations($p, 1);
             $pageName = "creations";
@@ -65,13 +74,15 @@ Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collecti
 
     }
     else{
+
         if($page == "creations"){
-            $limit = Flight::get('creationLimit');
+
             $body = "creations/body";
             $items = Flight::artmoiController()->creations(0, $limit);
         }
         else {
             $body = "collection/body";
+            $content = Flight::get('content');
             foreach ($content as $k => $v)
             {
                 if($k == $page) // match key name and page name
@@ -89,6 +100,7 @@ Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collecti
 
 // Home Page
 Flight::route('/', function(){
+
     Flight::render('home/body', array(), 'body_content');
     Flight::render('template', array());
 });

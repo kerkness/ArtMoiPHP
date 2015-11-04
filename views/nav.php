@@ -21,13 +21,15 @@
                 </li>
                 <?endif?>
                 <?if(Flight::get('pages')) : ?>
-                    <li><div class="dropdown"><button class="btn dropdown-toggle" id="collectionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Collections<span class="caret"></span></button>
-                        <ul class="dropdown-menu" aria-labelledby="collectionMenu">
-                            <? foreach( Flight::get('pages') as $page ) : ?>
-                                <li><a class="cat" href="/collection/<?= $page['id'] ?>"><?= $page['name'] ?></a></li>
-                            <? endforeach ?>
-                        </ul>
-                    </div></li>
+                    <li>
+                        <div class="dropdown"><button class="btn dropdown-toggle" id="collectionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Collections<span class="caret"></span></button>
+                            <ul class="dropdown-menu" aria-labelledby="collectionMenu">
+                                <? foreach( Flight::get('pages') as $page ) : ?>
+                                    <li><a class="cat" href="/collection/<?= $page['id'] ?>"><?= $page['name'] ?></a></li>
+                                <? endforeach ?>
+                            </ul>
+                        </div>
+                    </li>
                 <?endif?>
                 <li><a class="cat" href="/contact">Contact</a></li>
             </ul>

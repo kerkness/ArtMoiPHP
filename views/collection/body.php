@@ -1,4 +1,4 @@
-<?if($collection) : ?>
+<?if($collection && ($collection->publish == "1" || $collection->publish == true )) : ?>
     <? $count = 0;?>
     <div class="col-md-10 col-md-offset-1">
         <div class="col-md-1 col-sm-12 category">
@@ -11,7 +11,7 @@
             <?foreach($collection->items as $item) : ?>
                 <? $count++; ?>
                 <? if($item->imageThumbnailUrl()) : ?>
-                    <div class="col-md-4 col-sm-4 center-block">
+                    <div class="col-lg-3 col-md-4 col-sm-4 center-block">
                         <a class="thumbnail"  href="/collection/<?=$pageName?>/item?p=<?=$count?>">
                             <img class="img-responsive" src="<?= $item->imageThumbnailUrl() ?>">
                         </a>

@@ -8,7 +8,6 @@
     </div>
     <div class="col-md-10 col-sm-12">
             <?foreach($collection as $item) : ?>
-
                 <? $count++; ?>
                 <?if($item->imageThumbnailUrl()) : ?>
                 <div class="col-lg-3 col-md-4 col-sm-4 center-block">

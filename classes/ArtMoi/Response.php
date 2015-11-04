@@ -149,15 +149,6 @@ class ArtMoi_Response
         return $items;
     }
 
-//    public function buildImages($images)
-//    {
-//        foreach($images as $i => $img)
-//        {
-//            $images[$i] = new ArtMoi_Model_Image($img);
-//        }
-//
-//        return $images;
-//    }
 
     /**
      * @param $collections

@@ -6,6 +6,8 @@
 
 class ArtMoi_Controller
 {
+
+
     public function collection($publicId, $page = 0, $limit = 0)
     {
         $request = Flight::artmoiRequest();
