@@ -118,13 +118,14 @@ class ArtMoi_Response
      */
     public function items()
     {
-        if($this->results->items){
-            return $this->buildItems($this->results->items);
+        if($this->results){
+            if($this->results->items){
+                return $this->buildItems($this->results->items);
+            }
+            else{
+                return $this->buildItems($this->results);
+            }
         }
-        else{
-            return $this->buildItems($this->results);
-        }
-
     }
 
 
@@ -135,13 +136,15 @@ class ArtMoi_Response
      */
     public function buildItems( $items )
     {
-        foreach($items as $i => $item)
-        {
-            $items[$i] = ArtMoi_Model_Item::buildFromApi($item);
-//            if( $item->images )
-//            {
-//                $items[$i]->images = $this->buildImages($item->images);
-//            }
+        if($items){
+            foreach($items as $i => $item)
+            {
+                $items[$i] = ArtMoi_Model_Item::buildFromApi($item);
+    //            if( $item->images )
+    //            {
+    //                $items[$i]->images = $this->buildImages($item->images);
+    //            }
+            }
         }
         return $items;
     }

@@ -47,7 +47,6 @@ class ArtMoi_Model_Item
         $item = new ArtMoi_Model_Item();
 
         if ($data) {
-
             foreach ($data as $key => $value) {
                 if ($key == 'medium') {
                     $value = $value->name;
@@ -136,13 +135,12 @@ class ArtMoi_Model_Item
         if ($this->year) {
             $date .= $this->year;
         }
-
         return $date;
     }
 
     public function imageUrl()
     {
-        return ($this->image) ? $this->image : $this->images[0]->imageFileSized;
+        return ($this->image) ? $this->image : $this->images[0]->imageFile;
     }
 
     public function imageThumbnailUrl()

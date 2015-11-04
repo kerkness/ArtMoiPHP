@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-navigationbar">
             <ul class="nav navbar-nav">
                 <li><a class="cat" href="/">Home</a></a></li>
-                <?if(Flight::get('items')) : ?>
+                <?if(Flight::get('itemCount') > 0) : ?>
                 <li>
                     <a class="cat" href="/collection/creations">Creations</a>
                 </li>

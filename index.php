@@ -66,8 +66,9 @@ Flight::route('/collection(/@page(/@collectionNumber))',function($page,$collecti
     }
     else{
         if($page == "creations"){
+            $limit = Flight::get('creationLimit');
             $body = "creations/body";
-            $items = Flight::artmoiController()->creations();
+            $items = Flight::artmoiController()->creations(0, $limit);
         }
         else {
             $body = "collection/body";
