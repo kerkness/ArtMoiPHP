@@ -21,6 +21,7 @@ Flight::map('notFound',function(){
 
 // Contact Page
 Flight::route('/contact',function(){
+    error_log("load twice? ");
     $js = array("../vendor/formvalidation/dist/js/formValidation.min.js", "../vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
     $css = array("../vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
 
@@ -29,6 +30,7 @@ Flight::route('/contact',function(){
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(MANDRILL_API_KEY != null){
+            error_log("load twice? seriously?? ");
             Flight::artmoiContact()->action_mandrill();
         }
         else{

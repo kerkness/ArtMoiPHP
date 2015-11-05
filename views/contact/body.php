@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group">
-                <button type="submit" class="btn btn-default" name="submit" value="Submit"><?= __('Submit') // label for submit button ?></button>
+                <button class="btn btn-default" name="submit" value="Submit"><?= __('Submit') // label for submit button ?></button>
                 </div>
 
                 <div style='clear:both'></div>
