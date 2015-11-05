@@ -14,15 +14,15 @@
 
         <div class="collapse navbar-collapse" id="bs-navigationbar">
             <ul class="nav navbar-nav">
-                <li><a class="cat" href="/">Home</a></a></li>
+                <li><a class="cat" href="/"><?= __('Home') // label for home button?></a></a></li>
                 <?if(Flight::get('itemCount') > 0) : ?>
                 <li>
-                    <a class="cat" href="/collection/creations">Creations</a>
+                    <a class="cat" href="/collection/creations"><?=  __('Creations') // label for creations button ?></a>
                 </li>
                 <?endif?>
                 <?if(Flight::get('pages')) : ?>
                     <li>
-                        <div class="dropdown"><button class="btn dropdown-toggle" id="collectionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Collections<span class="caret"></span></button>
+                        <div class="dropdown"><button class="btn dropdown-toggle" id="collectionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><?=  __('Collections') // label for collection button ?><span class="caret"></span></button>
                             <ul class="dropdown-menu" aria-labelledby="collectionMenu">
                                 <? foreach( Flight::get('pages') as $page ) : ?>
                                     <li><a class="cat" href="/collection/<?= $page['id'] ?>"><?= $page['name'] ?></a></li>
@@ -31,7 +31,7 @@
                         </div>
                     </li>
                 <?endif?>
-                <li><a class="cat" href="/contact">Contact</a></li>
+                <li><a class="cat" href="/contact"><?=  __('Contact') // label for contact button ?></a></li>
             </ul>
         </div>
     </div>

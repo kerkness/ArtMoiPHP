@@ -1,13 +1,14 @@
 
 
 <?if($images) : ?>
-    <div class="col-md-8 col-sm-12 center ">
+    <div class="col-md-12 col-sm-12">
+        <div class="col-md-8 col-sm-12 center">
         <? foreach($images as $image) : ?>
-            <div class="col-md-2 col-xs-4">
+            <div class="col-md-2 col-xs-4 margin-top-sm">
                 <a href="<?=$image->imageFile?>" class="thumbnailImage"><img src="<?=$image->imageFileThumbnail?>" class="img-responsive"/> </a>
             </div>
         <? endforeach ?>
-    </div>
+        </div>
     </div>
 <?endif?>
 
@@ -32,6 +33,6 @@
     }(jQuery);
 
 </script>
-</div>
+
 
 <br clear="all" />

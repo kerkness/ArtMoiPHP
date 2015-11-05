@@ -1,18 +1,18 @@
-<?if($collection && ($collection->publish == "1" || $collection->publish == true )) : ?>
-    <? $count = 0;?>
-    <div class="col-md-10 col-md-offset-1">
+<?if($items && ($items->publish == "1" || $items->publish == true )) : ?>
+    <? $count = 0  + $skip;?>
+    <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
         <div class="col-md-1 col-sm-12 category">
             <div class="description">
-                <h2><?=$collection->name?></h2>
+                <h2 class="text-center"><?=$items->name?></h2>
             </div>
         </div>
         <div class="col-md-10 col-sm-12">
-        <?if($collection->items) : ?>
-            <?foreach($collection->items as $item) : ?>
+        <?if($items->items) : ?>
+            <?foreach($items->items as $item) : ?>
                 <? $count++; ?>
                 <? if($item->imageThumbnailUrl()) : ?>
                     <div class="col-lg-3 col-md-4 col-sm-4 center-block">
-                        <a class="thumbnail"  href="/collection/<?=$pageName?>/item?p=<?=$count?>">
+                        <a class="thumbnail"  href="/item/<?=$collectionId?>?p=<?=$count?>">
                             <img class="img-responsive" src="<?= $item->imageThumbnailUrl() ?>">
                         </a>
                     </div>
@@ -20,6 +20,16 @@
             <?endforeach?>
         <?endif?>
         </div>
+
+        <div class="col-md-12  col-sm-12">
+            <?if ( $skip !== 0 ) : ?>
+                <a href="/collection/<?=$collectionId?>?page=<?=$page-1?>&skip=<?=$skip-30?>" class="btn btn-moi"><?= __('Prev') // label for next button ?></a>
+            <?endif?>
+            <?if ( $skip+30 < $items->itemCount ) : ?>
+                <a href="/collection/<?=$collectionId?>?page=<?=$page+1?>&skip=<?=$skip+30?>" class="btn btn-moi"><?= __('Next') // label for next button ?></a>
+            <?endif?>
+        </div>
+
     </div>
 <? endif ?>
 

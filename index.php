@@ -21,7 +21,8 @@ Flight::map('notFound',function(){
 
 // Contact Page
 Flight::route('/contact',function(){
-    $js = array("/scripts/contact.js");
+    $js = array("../vendor/formvalidation/dist/js/formValidation.min.js", "../vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
+    $css = array("../vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
 
     $contactList = Flight::get('contact');
     $contact = Flight::artmoiController()->contactIcons($contactList);
@@ -36,66 +37,91 @@ Flight::route('/contact',function(){
     }
     Flight::render('header',array(),'header_content');
     Flight::render('contact/body', array("contact" => $contact), 'body_content');
-    Flight::render('template', array("js" => $js, "pageName" => "Contact"));
+    Flight::render('template', array("js" => $js, "css" => $css,"pageName" => "Contact"));
 });
 
 // Display collections & items
-Flight::route('/collection(/@action(/@collectionNumber))',function($action,$collectionNumber){
-    $js = array("/scripts/jquery.arrowNavigation.js");
-    $limit = Flight::get('creationLimit');
-    $items = array();
+Flight::route('/collection(/@collectionId)',function($collectionId){
 
-    // if collection number exists, load creation page
+    $creationLimit = Flight::get('creationLimit');
 
-    if($collectionNumber || $collectionNumber == "item")
-    {
-        $body = "creation/body";
-        // Grab one item data from collection
-        $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
-        $t = (Flight::request()->query->t) ? Flight::request()->query->t : "";
+    $page = (Flight::request()->query->page) ? Flight::request()->query->page : 0;
+    $skip = (Flight::request()->query->skip) ? Flight::request()->query->skip : 0;
+    $limit = 30;
 
-        // Redirect to the first item page if $page or $total is greater than creation limit
-        if($p > $limit && $limit > 0){
-            $p = 0;
+    if($collectionId == "creations"){
+        $body = "creations/body";
+        $pageName = "creations";
+
+        if($skip + 30 > $creationLimit){
+            $limit = $creationLimit - $skip;
+
+            if($limit <= 0){
+                $page = 0;
+                $skip = 0;
+                $limit = 30;
+            }
         }
-        if($t > $limit){
-            $t = $limit;
-        }
-
-        Flight::view()->set("page",$p);
-
-        if($action == "creations"){
-            $items = Flight::artmoiController()->creations($p, 1);
-            $pageName = "creations";
-        }else{
-            $items = Flight::artmoiController()->collection($action, $p, 1);
-            $pageName = $items->items[0]->title;
-        }
-
+        $items = Flight::artmoiController()->creations($page, $limit, $skip);
     }
-    else{
 
-        if($action == "creations"){
+    else {
 
-            $body = "creations/body";
-            $items = Flight::artmoiController()->creations(0, $limit);
-        }
-        else {
-            $body = "collection/body";
-            $content = Flight::get('content');
-            foreach ($content as $k => $v)
+        $body = "collection/body";
+        $content = Flight::get('content');
+
+        foreach ($content as $k => $v)
+        {
+            if($k == $collectionId) // match key name and collection ID
             {
-                if($k == $action) // match key name and page name
-                {
-                    $pageName = $v['collections']['name'];
-                    $items = Flight::artmoiController()->collection($k);
-                }
+                $pageName = $v['collections']['name'];
+                $collectionId = $v['collections']['id'];
+                $items = Flight::artmoiController()->collection($k,$page,$limit,$skip);
             }
         }
     }
+
     Flight::render('header',array(),'header_content');
-    Flight::render($body, array("collection" => $items, "collectionNumber" => $collectionNumber,"pageName" => $action, "total" => $t), 'body_content');
-    Flight::render('template', array("pageName" => $pageName, "js" => $js));
+    Flight::render($body, array("items" => $items, "collectionNumber" => $collectionId,"collectionId" => $collectionId, "page" => $page ,"skip" => $skip, "creationLimit" => $creationLimit), 'body_content');
+    Flight::render('template', array("pageName" => $pageName));
+});
+
+
+Flight::route('/item(/@action)',function($action){
+    $js = array("/scripts/jquery.arrowNavigation.js");
+
+    $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
+
+    if($action == "creations"){
+       if( Flight::get('itemCount') < Flight::get('creationLimit'))
+       {
+           $total = Flight::get('itemCount');
+       }
+        else{
+            $total = Flight::get('creationLimit');
+        }
+
+        if($p > $total && $total > 0){
+            $p = 0;
+        }
+
+        $items = Flight::artmoiController()->creations($p, 1);
+        $pageName = ($items[0]->title) ? $items[0]->title : "Untitled";
+    }
+    else{
+
+        $items = Flight::artmoiController()->collection($action, $p, 1);
+
+        $total = $items->itemCount;
+
+        $pageName = $items->items[0]->title;
+    }
+
+    Flight::render('header',array(),'header_content');
+    Flight::render('creation/body', array("collection" => $items, "action" => $action, "collectionId" => $action, "t" => $total, "page" => $p), 'body_content');
+    Flight::render('template', array("pageName" => "$pageName", "js" => $js));
+
+
 });
 
 // Home Page
@@ -107,3 +133,5 @@ Flight::route('/', function(){
  
 
 Flight::start();
+
+

@@ -140,10 +140,6 @@ class ArtMoi_Response
             foreach($items as $i => $item)
             {
                 $items[$i] = ArtMoi_Model_Item::buildFromApi($item);
-    //            if( $item->images )
-    //            {
-    //                $items[$i]->images = $this->buildImages($item->images);
-    //            }
             }
         }
         return $items;

@@ -1,4 +1,45 @@
 $(function(){
+    $("#contact_form").formValidation({
+
+        framework: 'bootstrap',
+
+        // Feedback icons
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+
+        fields:{
+            name:{
+                validators:{
+                    notEmpty:{
+                        message: 'the name is required and cannot be empty.'
+                    }
+                }
+            },
+            email:{
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required'
+                    },
+                    emailAddress: {
+                        message: 'The input is not a valid email address'
+                    }
+                }
+            },
+            message:{
+                validators:{
+                    notEmpty:{
+                        message: "Message cannot be empty"
+                    }
+                }
+            }
+
+
+        }
+    });
+
     var form = $("#contact_form");
     $(form).submit(function(event){
         event.preventDefault();
@@ -38,5 +79,7 @@ $(function(){
                 }
             });
     })
+
+
 
 });

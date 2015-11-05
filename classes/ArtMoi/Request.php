@@ -50,14 +50,14 @@ class ArtMoi_Request{
 
             $uri = implode('/',$uriParts);
 
-            error_log("uri :: ".$uri);
+//            error_log("uri :: ".$uri);
 
             $this->params('key',$this->apikey);
 
-            foreach($this->params() as $k => $v)
-            {
-                error_log("calling api with param $k => $v");
-            }
+//            foreach($this->params() as $k => $v)
+//            {
+//                error_log("calling api with param $k => $v");
+//            }
 
             // CURL Arguments
             $args = array( 'http' =>

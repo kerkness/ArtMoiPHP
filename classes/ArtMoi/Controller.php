@@ -8,32 +8,31 @@ class ArtMoi_Controller
 {
 
 
-    public function collection($publicId, $page = 0, $limit = 0)
+    public function collection($publicId, $page = 0, $limit = 0, $skip = 0)
     {
         $request = Flight::artmoiRequest();
 
+        $request->params('skip',$skip);
         $request->params('limit',$limit);
         $request->params('p',$page);
 
         $controller = "collection";
         $action = $publicId;
         $response = $request->call($controller, $action);
-
         return $response->collection();
     }
 
-    public function creations($page = 0, $limit = 30)
+    public function creations($page = 0, $limit = 30, $skip = 0)
     {
+
         $request = Flight::artmoiRequest();
         $request->params('p',$page);
         $request->params('limit',$limit);
-        $request->params('orderby', 'sortDate');
-        $request->params('orderdir', 'desc');
+        $request->params('skip',$skip);
 
         $controller = "creation";
         $action = "user";
         $response = $request->call($controller,$action);
-
         return $response->items();
     }
 
@@ -80,7 +79,7 @@ class ArtMoi_Controller
                     $contact[$iconName]['icon'] = 'fa fa-skype';
                     break;
                 case 'tumblr':
-                    $contact[$iconName]['icon']= '1fa fa-tumblr';
+                    $contact[$iconName]['icon']= 'fa fa-tumblr';
                     break;
                 case 'twitter':
                     $contact[$iconName]['icon'] = 'fa fa-twitter';

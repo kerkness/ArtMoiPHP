@@ -22,6 +22,12 @@
     <!-- Custom Stylesheets -->
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
 
+    <? if( isset($css) and is_array($css) ) : ?>
+        <? foreach($css as $href) : ?>
+            <link rel="stylesheet" href="<?=$href?>" />
+        <? endforeach ?>
+    <? endif ?>
+
     <!-- jQuery -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 

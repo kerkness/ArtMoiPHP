@@ -26,6 +26,14 @@ a {
 }
 
 
+.btn-moi{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn-moi:hover{
+    background-color:#ccc;
+}
 .header {
     text-align: center;
     margin-bottom: 50px;
@@ -214,6 +222,10 @@ margin-bottom: 25px;
     font-size:1.3em;
     background-color:#999;
 }
+.has-feedback label~.form-control-feedback{
+    top:18px;
+}
+
 .sidebar {
     text-align: justify;
     font: 15px/28px Georgia, "Times New Roman", Times, serif;

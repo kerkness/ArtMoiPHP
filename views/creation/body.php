@@ -1,5 +1,5 @@
 <? if($collection) : ?>
-    <div class="creation-container">
+    <div class="col-md-12">
     <? foreach( ($collection->items) ? $collection->items : $collection  as $item) : ?>
 
         <? if($item->imageUrl()) : ?>
@@ -25,18 +25,19 @@
             <div class="col-md-2 border-line center"></div>
             <? if($item->status) : ?> <div class="margin-top-md"><?=$item->status?></div>  <?endif?>
             <? if($item->price) : ?> <span><?=$item->price?></span>  <?endif?>
-            </div>
-    </div>
-    <?if(count($item->images) > 1) : ?>
-        <? Flight::render('creation/thumbnail',array('images' => $item->images));?>
-    <?endif?>
-
-        <? $itemCount = ($collection->itemCount) ? $collection->itemCount : $total; ?>
-        <div id="navigation"class="col-md-12 margin-top-sm">
-                        <a class="cat" href="/collection/<?=$pageName?>/item?p=<?if($page == 1 || $page == 0) : ?><?=$itemCount?><? else : ?><?=$page-1?><?endif?><?= ($total) ? "&t=$total" : "" ?>" id="arr-nav-left-link">&lt; prev</a>
-                        &nbsp;&nbsp;&nbsp;<a class="cat" href="/collection/<?=$pageName?>">&equiv;&equiv;&equiv;&equiv;</a>&nbsp;&nbsp;&nbsp;
-                        <a class="cat" href="/collection/<?=$pageName?>/item?p=<?if($page == $itemCount) : ?>1<? else : ?><?=$page+1?><?endif?><?= ($total) ? "&t=$total" : "" ?>" id="arr-nav-right-link">next &gt;</a>
         </div>
+     </div>
+
+     <?if(count($item->images) > 1) : ?>
+         <? Flight::render('creation/thumbnail',array('images' => $item->images));?>
+     <?endif?>
+
+        <div id="navigation"class="col-md-12 margin-top-md">
+            <a class="cat" href="/item/<?=$action?>?p=<?if($page == 1 || $page == 0) : ?><?=$t?><? else : ?><?=$page-1?><?endif?>" id="arr-nav-left-link">&lt; prev</a>
+            &nbsp;&nbsp;&nbsp;<a class="cat" href="/collection/<?=$collectionId?>">&equiv;&equiv;&equiv;&equiv;</a>&nbsp;&nbsp;&nbsp;
+            <a class="cat" href="/item/<?=$action?>?p=<?if($page == $t) : ?>1<? else : ?><?=$page+1?><?endif?>" id="arr-nav-right-link">next &gt;</a>
+        </div>
+
 
 <?endforeach?>
 <?endif?>
