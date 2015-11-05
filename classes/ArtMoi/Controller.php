@@ -27,6 +27,8 @@ class ArtMoi_Controller
         $request = Flight::artmoiRequest();
         $request->params('p',$page);
         $request->params('limit',$limit);
+        $request->params('orderby', 'sortDate');
+        $request->params('orderdir', 'desc');
 
         $controller = "creation";
         $action = "user";

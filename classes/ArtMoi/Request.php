@@ -33,7 +33,7 @@ class ArtMoi_Request{
         return $this->params;
     }
 
-    public function call($controller, $action = 'index', $id = "")
+    public function call($controller, $action = 'index', $id = "" )
     {
         if(!$controller)
         {
