@@ -5,6 +5,7 @@ require_once('initflight.php');
 require_once('config.php');
 
 
+
 // Register classes with Flight
 Flight::register('artmoiController', 'ArtMoi_Controller');
 Flight::register('artmoiRequest', 'ArtMoi_Request');
@@ -21,16 +22,14 @@ Flight::map('notFound',function(){
 
 // Contact Page
 Flight::route('/contact',function(){
-    error_log("load twice? ");
+
     $js = array("../vendor/formvalidation/dist/js/formValidation.min.js", "../vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
     $css = array("../vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
 
-    $contactList = Flight::get('contact');
-    $contact = Flight::artmoiController()->contactIcons($contactList);
+    $contact = Flight::artmoiContact()->action_contactPoints();
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         if(MANDRILL_API_KEY != null){
-            error_log("load twice? seriously?? ");
             Flight::artmoiContact()->action_mandrill();
         }
         else{
@@ -46,12 +45,13 @@ Flight::route('/contact',function(){
 Flight::route('/collection(/@collectionId)',function($collectionId){
 
     $creationLimit = Flight::get('creationLimit');
+    $showCreations = Flight::get('showCreations');
 
     $page = (Flight::request()->query->page) ? Flight::request()->query->page : 0;
     $skip = (Flight::request()->query->skip) ? Flight::request()->query->skip : 0;
     $limit = 30;
 
-    if($collectionId == "creations"){
+    if($collectionId == "creations" && $showCreations !== false){
         $body = "creations/body";
         $pageName = "creations";
 
@@ -91,24 +91,27 @@ Flight::route('/collection(/@collectionId)',function($collectionId){
 
 Flight::route('/item(/@action)',function($action){
     $js = array("/scripts/jquery.arrowNavigation.js");
+    $showCreations = Flight::get('showCreations');
 
     $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
 
     if($action == "creations"){
-       if( Flight::get('itemCount') < Flight::get('creationLimit'))
-       {
-           $total = Flight::get('itemCount');
-       }
-        else{
-            $total = Flight::get('creationLimit');
-        }
+        if($showCreations !== false){
+           if( Flight::get('itemCount') < Flight::get('creationLimit'))
+           {
+               $total = Flight::get('itemCount');
+           }
+            else{
+                $total = Flight::get('creationLimit');
+            }
 
-        if($p > $total && $total > 0){
-            $p = 0;
-        }
+            if($p > $total && $total > 0){
+                $p = 0;
+            }
 
-        $items = Flight::artmoiController()->creations($p, 1);
-        $pageName = ($items[0]->title) ? $items[0]->title : "Untitled";
+            $items = Flight::artmoiController()->creations($p, 1);
+            $pageName = ($items[0]->title) ? $items[0]->title : "Untitled";
+        }
     }
     else{
 

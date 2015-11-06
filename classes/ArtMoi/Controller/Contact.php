@@ -1,7 +1,98 @@
 <?php
 
+use Parse\ParseQuery;
+
 class Artmoi_Controller_Contact{
 
+    public $contact = null;
+
+    public function  __construct(){
+        // Get contact points
+        $creator = Flight::get('creator');
+        $contactPoints = $creator->fetch()->contactPoints;
+
+        $orQueryAry = array();
+
+        if($contactPoints){
+            foreach($contactPoints as $point){
+                $q = ListItem::query();
+                $q->equalTo('objectId', $point->getObjectId());
+
+                $orQueryAry[] = $q;
+            }
+            $orQuery = ParseQuery::orQueries($orQueryAry);
+            $orQuery->includeKey('itemType');
+            $contactList = $orQuery->find();
+
+            foreach($contactList as $c){
+                $contact[$c->itemType->value]['name'] = $c->itemType->value;
+                $contact[$c->itemType->value]['link'] = Creator::contactPointLink($c);
+            }
+        }
+
+        $this->contact = $contact;
+    }
+
+    public function action_contactPoints(){
+        if( $this->contact){
+            foreach ( $this->contact as $contactList){
+                $iconName = $contactList['name'];
+                switch( $iconName ) {
+                    case 'behance':
+                        $this->contact[$iconName]['icon'] = 'fa fa-behance';
+                        break;
+                    case 'blogger':
+                        $this->contact[$iconName]['icon'] = 'images/blogger.png';
+                        break;
+                    case 'youtube':
+                        $this->contact[$iconName]['icon'] = 'fa fa-youtube';
+                        break;
+                    case 'email':
+                        $this->contact[$iconName]['icon'] = 'fa fa-envelope-o';
+                        break;
+                    case 'facebook':
+                        $this->contact[$iconName]['icon'] = 'fa fa-facebook-official';
+                        break;
+                    case 'flickr':
+                        $this->contact[$iconName]['icon'] = 'fa fa-flickr';
+                        break;
+                    case 'foursquare':
+                        $this->contact[$iconName]['icon'] = 'fa fa-foursquare';
+                        break;
+                    case 'googleplus':
+                        $this->contact[$iconName]['icon'] = 'fa fa-google-plus';
+                        break;
+                    case 'instagram':
+                        $this->contact[$iconName]['icon'] = 'fa fa-instagram';
+                        break;
+                    case 'linkedin':
+                        $this->contact[$iconName]['icon'] = 'fa fa-linkedin';
+                        break;
+                    case 'pinterest':
+                        $this->contact[$iconName]['icon'] = 'fa fa-pinterest';
+                        break;
+                    case 'skype':
+                        $this->contact[$iconName]['icon'] = 'fa fa-skype';
+                        break;
+                    case 'tumblr':
+                        $this->contact[$iconName]['icon']= 'fa fa-tumblr';
+                        break;
+                    case 'twitter':
+                        $this->contact[$iconName]['icon'] = 'fa fa-twitter';
+                        break;
+                    case 'vimeo':
+                        $this->contact[$iconName]['icon'] = 'fa fa-vimeo';
+                        break;
+                    case 'website':
+                        $this->contact[$iconName]['icon'] = 'fa fa-star-o';
+                        break;
+
+                }
+            }
+            return  $this->contact;
+        }
+
+    }
 
     public function action_mandrill(){
         $name = strip_tags(trim($_POST["name"]));
@@ -11,6 +102,7 @@ class Artmoi_Controller_Contact{
         $message = trim($_POST["message"]);
 
         $userEmail = $_POST["recipient"];
+
 
         if ( empty($name) OR empty($message) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // Set a 400 (bad request) response code and exit.

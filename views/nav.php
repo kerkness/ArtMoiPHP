@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-navigationbar">
             <ul class="nav navbar-nav">
                 <li><a class="cat" href="/"><?= __('Home') // label for home button?></a></a></li>
-                <?if(Flight::get('itemCount') > 0) : ?>
+                <?if(Flight::get('showCreations') == true) : ?>
                 <li>
                     <a class="cat" href="/collection/creations"><?=  __('Creations') // label for creations button ?></a>
                 </li>
