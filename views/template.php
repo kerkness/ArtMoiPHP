@@ -34,7 +34,6 @@
 
 </head>
 <body>
-
     <div class="container">
         <?=$header_content?>
         <?=$body_content?>
