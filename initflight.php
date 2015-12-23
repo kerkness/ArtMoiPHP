@@ -5,7 +5,10 @@
 */
 $dir = dirname(__FILE__);
 
-require $dir . '/flight/flight/Flight.php';
+if( ! class_exists('Flight') )
+{
+    require $dir . '/flight/flight/Flight.php';
+}
 
 // path for classes
 Flight::path( $dir .'/classes');
