@@ -1,9 +1,19 @@
 <?php
 
-require_once('initflight.php');
+$path = dirname(__FILE__);
 
-require_once('config.php');
+if( is_file( $path.'/initflight.php') ){
+    require_once( $path.'/initflight.php');
+}
 
+if( is_file( $path.'/config.php') ){
+    require_once($path.'/config.php');
+} elseif ( is_file( $path.'/../config.php') )  {
+    require_once( $path.'/../config.php' );
+} else {
+    echo "Invalid config file.";
+    die();
+}
 
 
 // Register classes with Flight
