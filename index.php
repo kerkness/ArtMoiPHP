@@ -146,8 +146,11 @@ Flight::route('/item(/@action)',function($action){
 // Home Page
 Flight::route('/', function(){
 
+
+
     Flight::render('home/body', array(), 'body_content');
     Flight::render('template', array());
+
 });
  
 
