@@ -33,9 +33,9 @@ Flight::map('notFound',function(){
 // Contact Page
 Flight::route('/contact',function()
 {
-    // TODO:: We will need to include the form validation as a submodule for the portfolio site.
-    $js = array("../vendor/formvalidation/dist/js/formValidation.min.js", "../vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
-    $css = array("../vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
+    // TODO:: We will need to include the form validation as optional because anyone downloading this project will need to obtain thier own license...
+    $js = array("https://artmoi.me/vendor/formvalidation/dist/js/formValidation.min.js", "https://artmoi.me/vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
+    $css = array("https://artmoi.me/vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
 
     $contact = Flight::artmoiContact()->action_contactPoints();
 
@@ -103,14 +103,16 @@ Flight::route('/collection(/@collectionId)',function($collectionId){
 });
 
 
-Flight::route('/item(/@action)',function($action){
+Flight::route('/item(/@action)',function($action)
+{
     $js = array("/scripts/jquery.arrowNavigation.js");
     $showCreations = Flight::get('showCreations');
 
     $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
 
     if($action == "creations"){
-        if($showCreations !== false){
+        if($showCreations !== false)
+        {
            if( Flight::get('itemCount') < Flight::get('creationLimit'))
            {
                $total = Flight::get('itemCount');
@@ -132,6 +134,9 @@ Flight::route('/item(/@action)',function($action){
         $items = Flight::artmoiController()->collection($action, $p, 1);
 
         $total = $items->itemCount;
+
+        Moi::log("WE have loaded items from the collection");
+        Moi::log($items->itemCount);
 
         $pageName = $items->items[0]->title;
     }

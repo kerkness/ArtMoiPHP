@@ -35,6 +35,11 @@ class ArtMoi_Controller
         $response = $request->call($controller,$action);
 
 
+        Moi::log("Portfolio request for user items..");
+
+        Moi::log($response);
+
+
         return $response->items();
     }
 

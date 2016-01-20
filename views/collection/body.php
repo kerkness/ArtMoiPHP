@@ -18,6 +18,12 @@
                     </div>
                 <?endif?>
             <?endforeach?>
+        <? else : ?>
+            <div class="category">
+            <div class="description">
+                <h2 class="text-center"><?= __('No creations found.') ?></h2>
+            </div>
+            </div>
         <?endif?>
         </div>
 
@@ -32,5 +38,6 @@
 
     </div>
 <? endif ?>
+
 
 

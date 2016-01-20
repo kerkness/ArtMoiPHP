@@ -3,7 +3,7 @@
 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
     <div class="col-md-1 col-sm-12 category">
         <div class="description">
-            <h2 class="text-center">Creations</h2>
+            <h2 class="text-center"><?= __('Creations') ?></h2>
         </div>
     </div>
     <div class="col-md-10 col-sm-12">
@@ -32,3 +32,13 @@
     </div>
 </div>
 <?endif?>
+
+<? if( ! $items ) : ?>
+    <div class="category">
+        <div class="description">
+            <h2 class="text-center"><?= __('No creations found.') ?></h2>
+        </div>
+    </div>
+<? endif ?>
+
+
