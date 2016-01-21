@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis);
+html, body{
+    width:100%;
+    height:100%;
+}
+body{
+    background-color: #39c2cc;
+    color:#ffffff;
+    font-family: 'Dosis', sans-serif;
+}
+
+.errorMessage{
+    position:absolute;
+    top:30%;
+}
+
+.errorDescription{
+    font-size:1.2em;
+}
+
+.errorDescription a{
+    color:#FFB71E;
+    font-weight:bold;
+}
