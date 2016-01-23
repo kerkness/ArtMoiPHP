@@ -23,8 +23,8 @@ Flight::register('artmoiResponse','ArtMoi_Response');
 Flight::register('artmoiContact', 'ArtMoi_Controller_Contact');
 
 // 404 Error page
-Flight::map('notFound',function(){
-    Flight::view()->set('error',"404");
+Flight::map('notFound', function(){
+    Flight::view()->set('errorCode',"404");
     Flight::view()->set('message',"Sorry! 404 Page not Found");
     Flight::view()->set('pageTitle',"404 Page not Found");
     Flight::render('404');
@@ -161,5 +161,3 @@ Flight::route('/', function(){
  
 
 Flight::start();
-
-
