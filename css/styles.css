@@ -334,7 +334,7 @@ label.form-group, #form-messages{
 #imageWrap{
     min-width:20px;
     min-height:20px;
-    background:url('/ArtMoiPHP/images/loading.gif') 20px 20px;
+    /*background:url('/ArtMoiPHP/images/loading.gif') 20px 20px;*/
 }
 
 
