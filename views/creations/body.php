@@ -20,6 +20,7 @@
     </div>
 
 
+    <? if( $paginate->lastPage > 1 ) : ?>
     <div class="col-md-12 col-sm-12">
         <?if ( $paginate->prevPage ) : ?>
             <a href="/collection/creations?page=<?=$paginate->prevPage?>" class="btn btn-moi"><?= __('Prev') // label for next button ?></a>
@@ -30,6 +31,8 @@
 
         <?endif?>
     </div>
+    <? endif ?>
+    
 </div>
 <?endif?>
 <? if( ! $items ) : ?>

@@ -32,11 +32,13 @@
          <? Flight::render('creation/thumbnail',array('images' => $item->images));?>
      <?endif?>
 
+        <? if( $paginate->lastPage > 1 ) : ?>
         <div id="navigation"class="col-md-12 margin-top-md">
             <a class="cat" href="/item/<?=$action?>?p=<?= $paginate->prevPage ?>" id="arr-nav-left-link">&lt; prev</a>
             &nbsp;&nbsp;&nbsp;<a class="cat" href="/collection/<?=$collectionId?>">&equiv;&equiv;&equiv;&equiv;</a>&nbsp;&nbsp;&nbsp;
             <a class="cat" href="/item/<?=$action?>?p=<?= $paginate->nextPage ?>" id="arr-nav-right-link">next &gt;</a>
         </div>
+        <? endif ?>
 
 
 <?endforeach?>
