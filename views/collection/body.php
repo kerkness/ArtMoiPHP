@@ -1,5 +1,5 @@
 <?if($items && ($items->publish == "1" || $items->publish == true )) : ?>
-    <? $count = 0  + $skip;?>
+    <? $count = $paginate->limit * ( $paginate->page - 1 ) ?>
     <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
         <div class="col-md-1 col-sm-12 category">
             <div class="description">
@@ -28,13 +28,14 @@
         </div>
 
         <div class="col-md-12  col-sm-12">
-            <?if ( $skip !== 0 ) : ?>
-                <a href="/collection/<?=$collectionId?>?page=<?=$page-1?>&skip=<?=$skip-30?>" class="btn btn-moi"><?= __('Prev') // label for next button ?></a>
+            <?if ( $paginate->prevPage ) : ?>
+                <a href="/collection/<?=$collectionId?>?page=<?= $paginate->prevPage ?>" class="btn btn-moi"><?= __('Prev') // label for next button ?></a>
             <?endif?>
-            <?if ( $skip+30 < $items->itemCount ) : ?>
-                <a href="/collection/<?=$collectionId?>?page=<?=$page+1?>&skip=<?=$skip+30?>" class="btn btn-moi"><?= __('Next') // label for next button ?></a>
+            <?if ( $paginate->nextPage ) : ?>
+                <a href="/collection/<?=$collectionId?>?page=<?=$paginate->nextPage ?>" class="btn btn-moi"><?= __('Next') // label for next button ?></a>
             <?endif?>
-        </div>
+
+        </div> 
 
     </div>
 <? endif ?>
