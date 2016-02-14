@@ -33,9 +33,9 @@
      <?endif?>
 
         <div id="navigation"class="col-md-12 margin-top-md">
-            <a class="cat" href="/item/<?=$action?>?p=<?if($page == 1 || $page == 0) : ?><?=$page?><? else : ?><?=$page-1?><?endif?>" id="arr-nav-left-link">&lt; prev</a>
+            <a class="cat" href="/item/<?=$action?>?p=<?= $paginate->prevPage ?>" id="arr-nav-left-link">&lt; prev</a>
             &nbsp;&nbsp;&nbsp;<a class="cat" href="/collection/<?=$collectionId?>">&equiv;&equiv;&equiv;&equiv;</a>&nbsp;&nbsp;&nbsp;
-            <a class="cat" href="/item/<?=$action?>?p=<?if($page == $t) : ?>1<? else : ?><?=$page+1?><?endif?>" id="arr-nav-right-link">next &gt;</a>
+            <a class="cat" href="/item/<?=$action?>?p=<?= $paginate->nextPage ?>" id="arr-nav-right-link">next &gt;</a>
         </div>
 
 

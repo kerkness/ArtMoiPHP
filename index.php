@@ -54,35 +54,29 @@ Flight::route('/contact',function()
 });
 
 // Display collections & items
-Flight::route('/collection(/@collectionId)',function($collectionId){
+Flight::route('/collection(/@collectionId)',function($collectionId)
+{
 
+//    $creationLimit = Flight::get('creationLimit');
+//    $showCreations = Flight::get('showCreations');
 
-    $creationLimit = Flight::get('creationLimit');
-    $showCreations = Flight::get('showCreations');
+    $page = (Flight::request()->query->page) ? Flight::request()->query->page : 1;
+//    $skip = (Flight::request()->query->skip) ? Flight::request()->query->skip : 0;
+    $limit = ( $_GET['limit'] ) ? $_GET['limit'] : 16;
 
-    $page = (Flight::request()->query->page) ? Flight::request()->query->page : 0;
-    $skip = (Flight::request()->query->skip) ? Flight::request()->query->skip : 0;
-    $limit = 30;
-
-    if($collectionId == "creations" && $showCreations !== false){
+    if( $collectionId == "creations" )
+    {
 
         $body = "creations/body";
         $pageName = "creations";
 
-        if($skip + 30 > $creationLimit){
-            $limit = $creationLimit - $skip;
+        $response = Flight::artmoiController()->creations($page, $limit);
 
-            if($limit <= 0){
-                $page = 0;
-                $skip = 0;
-                $limit = 30;
-            }
-        }
-        $items = Flight::artmoiController()->creations($page, $limit, $skip);
+        $items = $response->items();
 
     }
-
-    else {
+    else
+    {
 
         $body = "collection/body";
         $content = Flight::get('content');
@@ -93,13 +87,17 @@ Flight::route('/collection(/@collectionId)',function($collectionId){
             {
                 $pageName = $v['collections']['name'];
                 $collectionId = $v['collections']['id'];
-                $items = Flight::artmoiController()->collection($k,$page,$limit,$skip);
+                $response = Flight::artmoiController()->collection($k,$page,$limit);
+
+                $items = $response->collection();
             }
         }
     }
 
+    $paginate = new ArtMoi_Paginate( $page, $limit, $response->resultCount() );
+
     Flight::render('header',array(),'header_content');
-    Flight::render($body, array("items" => $items, "collectionNumber" => $collectionId,"collectionId" => $collectionId, "page" => $page ,"skip" => $skip, "creationLimit" => $creationLimit), 'body_content');
+    Flight::render($body, array("items" => $items, "collectionNumber" => $collectionId,"collectionId" => $collectionId, "page" => $page ,"paginate" => $paginate), 'body_content');
     Flight::render('template', array("pageName" => $pageName));
 });
 
@@ -107,32 +105,26 @@ Flight::route('/collection(/@collectionId)',function($collectionId){
 Flight::route('/item(/@action)',function($action)
 {
     $js = array("/scripts/jquery.arrowNavigation.js");
-    $showCreations = Flight::get('showCreations');
+//    $showCreations = Flight::get('showCreations');
 
     $p = (Flight::request()->query->p) ? Flight::request()->query->p : 0;
 
-    if($action == "creations"){
-        if($showCreations !== false)
-        {
-           if( Flight::get('itemCount') < Flight::get('creationLimit'))
-           {
-               $total = Flight::get('itemCount');
-           }
-            else{
-                $total = Flight::get('creationLimit');
-            }
+    if($action == "creations")
+    {
 
-            if($p > $total && $total > 0){
-                $p = 0;
-            }
+        $response = Flight::artmoiController()->creations($p, 1);
 
-            $items = Flight::artmoiController()->creations($p, 1);
-            $pageName = ($items[0]->title) ? $items[0]->title : "Untitled";
-        }
+        $total = $response->resultCount();
+
+        $items = $response->items();
+
+        $pageName = ($items[0]->title) ? $items[0]->title : "";
     }
     else{
 
-        $items = Flight::artmoiController()->collection($action, $p, 1);
+        $response = Flight::artmoiController()->collection($action, $p, 1);
+
+        $items = $response->collection();
 
         $total = $items->itemCount;
 
@@ -142,8 +134,10 @@ Flight::route('/item(/@action)',function($action)
         $pageName = $items->items[0]->title;
     }
 
+    $paginate = new ArtMoi_Paginate($p, 1, $total);
+
     Flight::render('header',array(),'header_content');
-    Flight::render('creation/body', array("collection" => $items, "action" => $action, "collectionId" => $action, "t" => $total, "page" => $p), 'body_content');
+    Flight::render('creation/body', array("collection" => $items, "action" => $action, "collectionId" => $action, "paginate" => $paginate, "page" => $p), 'body_content');
     Flight::render('template', array("pageName" => "$pageName", "js" => $js));
 
 
@@ -151,8 +145,6 @@ Flight::route('/item(/@action)',function($action)
 
 // Home Page
 Flight::route('/', function(){
-
-
 
     Flight::render('home/body', array(), 'body_content');
     Flight::render('template', array());

@@ -8,10 +8,10 @@
 class ArtMoi_Response
 {
 
-    /**
-     * @var
-     */
-    public $className;
+//    /**
+//     * @var
+//     */
+//    public $className;
 
     /**
      * @var bool
@@ -28,25 +28,53 @@ class ArtMoi_Response
      */
     public $results = false;
 
+    /**
+     * @var int
+     */
+    public $resultCount;
+
+    /**
+     * @var mixed
+     */
+    private $_data;
+
+
+
 
     /**
      * @param null $json
      */
     public function __construct($json = NULL)
     {
-        $data = json_decode($json);
+        $this->_data = json_decode($json);
 
-        if ($data->error) {
-            $this->error($data->error);
+        if ($this->_data->error) {
+            $this->error($this->_data->error);
         }
-        if ($data->success) {
-            $this->success($data->success);
+        if ($this->_data->success) {
+            $this->success($this->_data->success);
         }
-        if ($data->results) {
-            $this->results($data->results);
+        if ($this->_data->results) {
+            $this->results($this->_data->results);
+        }
+        if ($this->_data->resultCount) {
+            $this->resultCount($this->_data->resultCount);
         }
     }
 
+
+    public function data()
+    {
+        return $this->_data;
+    }
+
+    public function resultCount( $count = null )
+    {
+        if (!is_null($count)) {
+            $this->resultCount = $count;
+        }
+        return $this->resultCount;
+    }
 
     /**
      * @param null $value

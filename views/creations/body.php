@@ -1,5 +1,5 @@
 <?if($items) : ?>
-<? $count = 0 + $skip;?>
+<? $count = $paginate->limit * ($paginate->page-1)  ?>
 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
     <div class="col-md-1 col-sm-12 category">
         <div class="description">
@@ -21,18 +21,17 @@
 
 
     <div class="col-md-12 col-sm-12">
-        <?if ( $skip !== 0 ) : ?>
-            <a href="/collection/creations?page=<?=$page-1?>&skip=<?=$skip-30?>" class="btn btn-moi"><?= __('Prev') // label for next button ?></a>
+        <?if ( $paginate->prevPage ) : ?>
+            <a href="/collection/creations?page=<?=$paginate->prevPage?>" class="btn btn-moi"><?= __('Prev') // label for next button ?></a>
         <?endif?>
 
-        <?if ( $skip+30 <  $creationLimit && $skip+30 < Flight::get('itemCount')) : ?>
-            <a href="/collection/creations?page=<?=$page+1?>&skip=<?=$skip+30?>" class="btn btn-moi"><?= __('Next') // label for next button ?></a>
+        <?if ( $paginate->nextPage ) : ?>
+            <a href="/collection/creations?page=<?=$paginate->nextPage?>" class="btn btn-moi"><?= __('Next') // label for next button ?></a>
 
         <?endif?>
     </div>
 </div>
 <?endif?>
-
 <? if( ! $items ) : ?>
     <div class="category">
         <div class="description">

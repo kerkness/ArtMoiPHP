@@ -19,28 +19,27 @@ class ArtMoi_Controller
         $controller = "collection";
         $action = $publicId;
         $response = $request->call($controller, $action);
-        return $response->collection();
+
+        return $response;
+
+//        return $response->collection();
     }
 
-    public function creations($page = 0, $limit = 30, $skip = 0)
+    public function creations($page = 0, $limit = 100, $skip = 0)
     {
+
+        error_log("Making a call to cretion user p = $page limit = $limit  skip = $skip");
 
         $request = Flight::artmoiRequest();
         $request->params('p',$page);
         $request->params('limit',$limit);
-        $request->params('skip',$skip);
+//        $request->params('skip',$skip);
 
         $controller = "creation";
         $action = "user";
         $response = $request->call($controller,$action);
 
-
-//        Moi::log("Portfolio request for user items..");
-
-//        Moi::log($response);
-
-
-        return $response->items();
+        return $response;
     }
 
 }
