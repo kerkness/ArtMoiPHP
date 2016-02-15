@@ -10,6 +10,8 @@ class ArtMoi_Controller
 
     public function collection($publicId, $page = 0, $limit = 0, $skip = 0)
     {
+        error_log("Calling collection $publicId  with p = $page and limit = $limit");
+
         $request = Flight::artmoiRequest();
 
         $request->params('limit',$limit);
@@ -18,6 +20,8 @@ class ArtMoi_Controller
         $controller = "collection";
         $action = $publicId;
         $response = $request->call($controller, $action);
+
+        Moi::log($response->data());
 
         return $response;
 
