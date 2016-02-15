@@ -21,7 +21,7 @@ class ArtMoi_Controller
         $action = $publicId;
         $response = $request->call($controller, $action);
 
-        Moi::log($response->data());
+//        Moi::log($response->data());
 
         return $response;
 
