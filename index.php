@@ -150,6 +150,6 @@ Flight::route('/', function(){
     Flight::render('template', array());
 
 });
- 
+
 
 Flight::start();

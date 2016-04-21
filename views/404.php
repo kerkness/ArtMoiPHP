@@ -6,6 +6,11 @@
    <title><?=$pageTitle?></title>
 
     <!-- ======
+       FONTS
+    ======== -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,500italic,500,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- ======
     STYLESHEETS
     ======== -->
 
@@ -23,47 +28,58 @@
 
 
 </head>
-<body>
-
-<div class="text-center">
-    <div class="errorMessage">
-        <div class="col-md-offset-4 col-md-4 col-sm-3">
-            <img src="/ArtMoiPHP/images/whiteLogo.png" class="img-responsive">
+<body id="errorPage">
+<nav class="navbar" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="col-md-2 col-sm-4 col-xs-6">
+                 <a class="navbar-brand" href="https://www.artmoi.com">
+                    <img src="/ArtMoiPHP/images/ArtMoiLogo.png" id="logo" class="img-responsive">
+                 </a>
+            </div>
         </div>
-        <div class="col-md-12 col-sm-12">
-            <h1><?= $message ?></h1>
+    </div>
+</nav>
+
+<header class="intro text-center">
+    <div class="intro-body">
+        <div class="container">
+
+            <div class="col-md-12 errorMessage">
+             <div class="col-md-10 col-md-offset-1 whiteTextBox">
+            <h2><?=__("Oops! We can't find this url. Let's troubleshoot for a moment...") ?></h2>
             <div class="errorDescription">
-            <?if($errorCode == "404") : ?>
-                    <p>
-                        <?=__("The page you requested couldn't be found.") ?> <br/>
-                        <?=__("Check out our %s page",'<a href="https://artmoi.zendesk.com">Support</a>')?>
-                         <?=__("or head back to ")?><a href="https://<?=Moi::thisDomain()?>">Dashboard</a> <br/>
-                        <?= __('If you continue to see this error you can let us know at %s', '<a href="#" id="email">moi@artmoi.com</a>' )?>
-                    </p>
-            <?else : ?>
                 <p>
-                    <?=__("Check out our %s page",'<a href="https://artmoi.zendesk.com">Support</a>')?>
-                    <?=__("or head back to ")?><a href="https://<?=Moi::thisDomain()?>">Dashboard</a> <br/>
-                    <?= __('If you continue to see this error you can let us know at %s', '<a href="#" id="email">moi@artmoi.com</a>' )?>
+                    <?=__("1. Does the artmoi.me address you entered have a typo?")?><br/>
+                    <?=__("Double-check your spelling.")?>
+                </p>
+
+                <p>
+                    <?=__("2. Are you an ArtMoi Studio user and you're looking for your artmoi.me site?")?><br/>
+                    <?=__("Learn how to activate it here:")?>
+                    <a href="http://artmoi.helpscoutdocs.com/article/53-enabling-your-public-profile" class="moicolor"><?=__("Enabling your Public Profile")?></a>
+                </p>
+
+                <p>
+                    <?=__("3. None of the above?")?><br/>
+                    <?=__("Contact us anytime at ")?><a href="#" id="email" class="moicolor">moi@artmoi.com</a>
                 </p>
 
 
-                <br/>
-                <div class="errorDetails" reference="<?=$errorKey?>">
+                <div class="errorDetails hidden" reference="<?=$errorKey?>">
                         <p><?= __('We logged this error with a reference of %s at roughly %s.', $errorKey, date('h:i:s A, l jS \of F Y ', time() )) ?></p>
                         <? if( Moi::environment() != Moi::$production ) : ?>
                         <h5>ERROR:: <?= $message ?></h5>
                         <div><?= $ex->getTraceAsString(); ?></div>
-                <? endif ?>
                 </div>
             <?endif?>
             </div>
         </div>
-
+    </div>
+    </div>
     </div>
 
-
-</div>
+</header>
 
 <!-- =====
  SCRIPTS

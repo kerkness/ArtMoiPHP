@@ -1,24 +1,48 @@
-@import url(https://fonts.googleapis.com/css?family=Dosis);
 html, body{
     width:100%;
     height:100%;
-}
-body{
-    background-color: #39c2cc;
-    color:#ffffff;
-    font-family: 'Dosis', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
-.errorMessage{
-    position:absolute;
-    top:30%;
+.intro{
+    height:100%;
+    padding:0;
+    display:table;
+    width:100%;
+
+}
+.intro-body{
+    display:table-cell;
+    vertical-align:middle;
+}
+
+h1,h2,h3{
+    font-weight:lighter
+}
+
+#errorPage{
+    background: url(../images/ErrorPageBG.jpg) no-repeat bottom center scroll;
+    background-color: #FFF;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.whiteTextBox{
+    background:rgba(255 ,255 ,255 , 0.5);
+    padding:30px;
 }
 
 .errorDescription{
-    font-size:1.2em;
+    font-size:1.6em;
+    font-weight:lighter;
 }
 
-.errorDescription a{
-    color:#FFB71E;
-    font-weight:bold;
+.errorDescription p{
+    margin:1.5em 0 1.5em 0;
+}
+
+a.moicolor{
+  color:#03ccd3;
 }
