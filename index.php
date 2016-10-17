@@ -28,15 +28,15 @@ Flight::map('notFound', function(){
     Flight::view()->set('message',"Sorry! 404 Page not Found");
     Flight::view()->set('pageTitle',"404 Page not Found");
     Flight::render('404');
-});
+}); 
 
 
 // Contact Page
 Flight::route('/contact',function()
 {
     // TODO:: We will need to include the form validation as optional because anyone downloading this project will need to obtain thier own license...
-    $js = array("https://artmoi.me/vendor/formvalidation/dist/js/formValidation.min.js", "https://artmoi.me/vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
-    $css = array("https://artmoi.me/vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
+    $js = array("https://v1.artmoi.me/vendor/formvalidation/dist/js/formValidation.min.js", "https://v1.artmoi.me/vendor/formvalidation/dist/js/framework/bootstrap.min.js", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js","/scripts/contact.js" );
+    $css = array("https://v1.artmoi.me/vendor/formvalidation/dist/css/formValidation.min.css", "//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css");
 
     $contact = Flight::artmoiContact()->action_contactPoints();
 
